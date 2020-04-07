@@ -13,6 +13,9 @@ class NQueensBoard {
     this.colsUsed = new Array(size).fill(false)
     this.diago135Used = Array(size * 2 - 1).fill(false)
     this.diago45Used = Array(size * 2 - 1).fill(false)
+    this.cols = 0
+    this.ld = 0
+    this.rd = 0
   }
   make_move(row, column) {
     const i135 = row + this.n - column - 1
@@ -23,7 +26,8 @@ class NQueensBoard {
     this.colsUsed[column] = true
     this.diago135Used[i135] = true
     this.diago45Used[i45] = true
-    return 0
+
+    return oldColumnInRow
   }
   unmake_move(row, column, oldRowState) {
     const i135 = row + this.n - column - 1
@@ -66,6 +70,15 @@ class Solution {
     return this.result.length
   }
   // return result.map(board => board.map(r => queenPositionToBoardRow(r)))
+
+  solveNQueens(n) {
+    let board = new NQueensBoard(n)
+    const initialRow = 0
+    for (let column = 0; column < n; column++) {
+      backtrack(board, this, initialRow, column)
+    }
+    return solution.length
+  }
 }
 
 function backtrack(board, solution, row, col) {
@@ -81,14 +94,7 @@ function backtrack(board, solution, row, col) {
   board.unmake_move(row, col, old)
 }
 
-function solveNQueens(n) {
-  let board = new NQueensBoard(n)
-  let solution = new Solution()
-  const initialRow = 0
-  for (let column = 0; column < n; column++) {
-    backtrack(board, solution, initialRow, column)
-  }
-  return solution.length
-}
+let solution = new Solution();
+let result = solution.solveNQueens(11)
+process.stdout.write(result.toString())
 
-console.log(solveNQueens(14))
