@@ -448,33 +448,176 @@ https://go.dev/blog/slices-intro
 20
 +15 минут на go
 
-## name
+## 53-maximum-subarray
 ### timing
 start:
-
+?
 end:
 
 ### sources, urls
+https://leetcode.com/problems/maximum-subarray/
 ### Constraints
 ```
+1 <= nums.length <= 3 * 10^4
+-10^5 <= nums[i] <= 10^5
 ```
 ### tests
 ```
+f([-2,1,-3,4,-1,2,1,-5,4]) = 6
+f([5,4,-1,7,8]) = 23
+f([1]) = 1
 ```
 ### complexity
-space - O( )
-runtime - O( )
-modification input data = yes|no
+space - O(1)
+runtime - O(n)
+modification input data = no
+
+### Main idea
+Берём cur_sum в него постоянно складываем числа, но если получилось что если прибавать к cur_sum текущее число и получилось хуже, чем если бы начали отчет от текущего числа, где мы сейчас, лучше мы с него и начнём, на каждой итерации переписываем max_sum
+### code in pseudo language
+```
+```
+
+### code
+
+```python
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_sum = nums[0]
+        cur_sum = nums[0]
+        
+        for i in range(1, len(nums)):
+            num = nums[i]
+            cur_sum = max(cur_sum + num, num)
+            max_sum = max(max_sum, cur_sum)
+            
+        return max_sum
+```
+```golang
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println(maxSubArray([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4}))
+}
+func maxSubArray(nums []int) int {
+    max_sum := nums[0]
+    cur_sum := nums[0]
+
+    for _, num := range nums[1:] {
+        cur_sum = max(cur_sum+num, num)
+        max_sum = max(cur_sum, max_sum)
+    }
+    return max_sum
+}
+func max(a, b int) int {
+    if a >= b {
+        return a
+    }
+    return b
+}
+```
+### links
+https://gobyexample.com/arrays
+### Затраченное время
+
+
+## 303 range-sum-query-immutable
+### timing
+start:
+2021-09-16T20:42:03+03:00
+end:
+2021-09-16T21:05:20+03:00
+### sources, urls
+https://leetcode.com/problems/range-sum-query-immutable/
+
+### Constraints
+```
+1 <= nums.length <= 10^4
+-10^5 <= nums[i] <= 10^5
+0 <= left <= right < nums.length
+At most 10^4 calls will be made to sumRange
+```
+
+### tests
+```
+//[-2, 0, 3, -5, 2, -1], [0,2] =  1
+//[-2, 0, 3, -5, 2, -1], [2,5] = -1 
+//[-2, 0, 3, -5, 2, -1], [0,5] = -3
+```
+
+### Main idea
+inp  [-2, 0, 3, -5, 2, -1]
+sums [-2, 0, 1, -4, -2, -3]
+sums[x] - сумма всех элементов до элемента с индексом x включая элемент
+включая! - если он нужен то надо предыдущий брать
+
+//нам нужен элемент nums[left], поэтому sums[left] - sums[left-1] = будет как раз элемент nums[left]
+return this.sums[right] - this.sums[left - 1]
+
+### complexity
+space - O(n)
+runtime - O(1) on query operation
+modification input data = no
 ### code in pseudo language
 ```
 ```
 ### code 
 ```python
+class NumArray:
+    def __init__(self, nums: List[int]):
+        sums = []
+        current_sum = 0
+        for num in nums:
+            current_sum += num
+            sums.append(current_sum)
+            
+        self.sums = sums
+        print(sums)
+
+    def sumRange(self, left: int, right: int) -> int:
+        if left == 0:
+            return self.sums[right]
+        return self.sums[right] - self.sums[left - 1]
+
+```
+
+```golang
+type NumArray struct {
+    sums []int
+}
+
+func Constructor(nums []int) NumArray {
+    sums := make([]int, len(nums), len(nums))
+    
+    current_sum := 0
+    for i, num := range nums {
+        current_sum += num
+        sums[i] = current_sum
+    }
+    // sums[0] = nums[0]
+    // for i := 1; i < len(nums); i++ {
+    //     sums[i] = sums[i-1] + nums[i]
+    // }
+    return NumArray{ sums }
+}
+
+func (this *NumArray) SumRange(left int, right int) int {
+    if left == 0 {
+        return this.sums[right]
+    }
+    return this.sums[right] - this.sums[left - 1]
+}
 ```
 ### links
 ### Затраченное время
+23
+
+=================================================================
 
 
+=================================================================
 # template
 
 ## name
@@ -490,6 +633,8 @@ end:
 ### tests
 ```
 ```
+### Main idea
+
 ### complexity
 space - O( )
 runtime - O( )
