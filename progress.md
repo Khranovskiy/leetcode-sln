@@ -614,6 +614,88 @@ func (this *NumArray) SumRange(left int, right int) int {
 ### Затраченное время
 23
 
+
+
+## 338-counting-bits
+### timing
+start:
+Thu Sep 16 21:50:50 2021
+2021-09-16T21:50:43+03:00
+
+end:
+Thu Sep 16 21:54:19 2021
+2021-09-16T21:54:22+03:00
+
+Thu Sep 16 22:46:05 2021
+2021-09-16T22:46:08+03:00
+
+### sources, urls
+https://leetcode.com/problems/counting-bits/
+### Constraints
+```
+0 <= n <= 10^5
+```
+### tests
+```
+f(0) = [0]
+f(2) = [0, 1,  1]
+f(3) = [0, 1,  1,  2]
+f(4) = [0, 1, 1, 2, 1]
+f(5) = [0, 1, 1, 2, 1, 2]
+f(6) = [0, 1, 1, 2, 1, 2, 2]
+f(7) = [0, 1, 1, 2, 1, 2, 2, 3]
+```
+### Main idea
+ans[i] is the number of 1s in the binary representation of i
+0 <= i <= n  
+f(5) = [0, 1, 1, 2, 1, 2]
+
+if i is odd we should add 1 to count of 1s in bin repr
+if i is even - add 0
+
+Dynamic programming
+
+Hint 2
+Divide the numbers in ranges like [2-3], [4-7], [8-15] and so on. And try to generate new range from previous.
+```
+0  0 0 0 0  
+1  0 0 0 1
+2  0 0 1 0
+3  0 0 1 1   0 1 1  3
+4  0 1 0 0 
+5  0 1 0 1 
+6  0 1 1 0   0 1 1 ~ 3 = 6/2 ~ 6 >> 1
+7  0 1 1 1 
+8  1 0 0 0 
+```
+memo[x] = memo[x >> 1] + x % 2
+memo[6] = memo[3] + 6 % 2
+### complexity
+space - O( n + 1)
+runtime - O(n)
+modification input data = no
+### code in pseudo language
+```
+ans = [n+1]
+ans[0] = 0
+for i = 1 .. n // n included
+    ans[i] = ans[i >> 1] + i % 2
+return ans
+```
+### code 
+```python
+def countBits(self, n: int) -> List[int]:
+    ans = [0] * (n+1)
+    ans[0] = 0
+    for i in range(1, n + 1):
+        ans[i] = ans[i >> 1] + i % 2
+    return ans
+```
+### links
+### Затраченное время
+
+
+
 =================================================================
 
 
@@ -637,7 +719,7 @@ end:
 
 ### complexity
 space - O( )
-runtime - O( )
+runtime - O()
 modification input data = yes|no
 ### code in pseudo language
 ```
