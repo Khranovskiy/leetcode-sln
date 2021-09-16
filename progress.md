@@ -333,18 +333,147 @@ def climbStairs(self, n: int) -> int:
 ### code without additional memory
 ```python
 def climbStairs(self, n: int) -> int:
-if n == 1:
-    return 1
-n1 = 1
-n2 = 2
-for i in range(3, n + 1):
-    n1, n2 = n2, n1 + n2
-return n2
+    if n == 1:
+        return 1
+    n1 = 1
+    n2 = 2
+    for i in range(3, n + 1):
+        n1, n2 = n2, n1 + n2
+    return n2
 ```
 ## links
 https://www.geeksforgeeks.org/python-initialize-empty-array-of-given-length/
 ## Затраченное время
 28
+
+
+## 121-best-time-to-buy-and-sell-stock
+### timing
+start:
+Thu Sep 16 16:58:17 2021
+2021-09-16T16:58:21+03:00
+
+2021-09-16T18:30:57+03:00
+
+2021-09-16T18:40:32+03:00
+end:
+2021-09-16T17:05:06+03:00
+
+2021-09-16T18:39:37+03:00
+
+2021-09-16T18:55:02+03:00
+### sources, urls
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+### Constraints
+- 1 <= prices.length <= 10^5
+- 0 <= prices[i] <= 10^4
+
+### tests
+```
+f([7,1,5,3,6,4]) = 5
+f([7,6,4,3,1]) = 0
+f([1]) = 0
+f([0]) = 0
+```
+### code in pseudo language
+```
+func maxProfit(prices) int:
+    maxProfit = 0
+    bestLowPrice = prices[0]
+
+    for price in prices: # i [1.. n-1]
+        maxProfit = max(maxProfit, price - bestLowPrice)
+        bestLowPrice = min(bestLowPrice, price)
+
+    return maxProfit
+```
+### complexity
+space - O(1)
+runtime - O(n)
+modification input data = no
+
+### code 
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        maxProfit = 0
+        bestLowPrice = prices[0]
+
+        for price in prices[1:]:
+            maxProfit = max(maxProfit, price - bestLowPrice)
+            bestLowPrice = min(bestLowPrice, price)
+        return maxProfit
+```
+
+```golang
+func maxProfit(prices []int) int {
+    maxProfit := 0
+    bestLowPrice := prices[0]
+
+    for _, price := range prices[1:] {
+        maxProfit = max(maxProfit, price - bestLowPrice)
+        bestLowPrice = min(bestLowPrice, price)
+    }
+
+    return maxProfit
+}
+func min(a, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
+func max(a, b int) int {
+    if a >= b {
+        return a
+    }
+    return b
+}
+func maxOf(vars ...int) int {
+    max := vars[0]
+    for _, i := range vars {
+        if max < i {
+            max = i
+        }
+    }
+    return max
+}
+```
+
+### links
+https://python-reference.readthedocs.io/en/latest/docs/brackets/slicing.html
+https://go.dev/blog/slices-intro
+
+### Затраченное время
+20
++15 минут на go
+
+## name
+### timing
+start:
+
+end:
+
+### sources, urls
+### Constraints
+```
+```
+### tests
+```
+```
+### complexity
+space - O( )
+runtime - O( )
+modification input data = yes|no
+### code in pseudo language
+```
+```
+### code 
+```python
+```
+### links
+### Затраченное время
+
 
 # template
 
@@ -355,11 +484,10 @@ start:
 end:
 
 ### sources, urls
-### tests
-```
-```
 ### Constraints
-### Brute force solution 
+```
+```
+### tests
 ```
 ```
 ### complexity
