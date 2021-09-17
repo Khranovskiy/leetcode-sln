@@ -846,7 +846,96 @@ func middleNode(head *ListNode) *ListNode {
 ### Оставшиеся вопросы
 
 
+## 206 reverse-linked-list
+### timing
+start:
+Fri Sep 17 10:08:56 2021
+2021-09-17T10:08:59+03:00
+end:
+Fri Sep 17 10:56:18 2021
+2021-09-17T10:56:20+03:00
 
+### sources, urls
+https://leetcode.com/problems/reverse-linked-list/
+### Constraints
+```
+The number of nodes in the list is the range [0, 5000].
+-5000 <= Node.val <= 5000
+```
+### Main idea
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+Modify list inplace, without creating a copy
+
+Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
+```
+[x] --> [x] --> [x]
+         |
+```
+Lets solve iteratively.
+On some step we have 
+* current element
+* pointer to the next
+* saved element from prev step
+
+previous -> current -> next
+previous <- current <- next
+
+### complexity
+space - O(1)
+runtime - O(n)
+modification input data = yes
+### tests
+```
+f([1,2,3,4,5]]) = [5,4,3,2,1] (actually it is not array)
+f([1,2]) = [2,1]
+f([]) = []
+```
+### code in pseudo language
+```
+func reverseList(head) {
+    previous = nil
+    current = head
+    while current != nil {
+        next = current.next
+        current.next = previous
+        previous = current
+        current = next
+    }
+    return previous
+}
+    1 -> 2 -> 3 -> 4 -> 5
+```
+### code 
+```python
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        current = head
+        while current:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        return prev
+```
+```golang
+func reverseList(head *ListNode) *ListNode {
+    var previous *ListNode = nil
+    current := head
+    for current != nil {
+        next := current.Next
+        current.Next = previous
+        previous = current
+        current = next 
+    }
+    return previous
+}
+```
+### links
+### Затраченное время
+48
+### Оставшиеся вопросы
 
 =================================================================
 
