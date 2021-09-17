@@ -1134,6 +1134,98 @@ func removeElements(head *ListNode, val int) *ListNode {
 сделал кучу ошибок
 в golang версии забываю как инстанцировать структуру
 
+
+
+
+
+## 083 remove-duplicates-from-sorted-list
+### timing
+start:
+Fri Sep 17 16:37:22 2021
+2021-09-17T16:37:25+03:00
+end:
+Fri Sep 17 16:56:18 2021
+2021-09-17T16:56:21+03:00
+
+### sources, urls
+https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+### Constraints
+```
+ * The number of nodes in the list is in the range [0, 300].
+ * -100 <= Node.val <= 100
+ * The list is guaranteed to be sorted in ascending order.
+```
+### Main idea
+Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+
+Добавим фейковый элемент в начало списка, чтобы он указывал на head
+
+current.Val будем сравнивать с current.Next.Val
+если равен то нужно пропустить current.Next элемент
+как бы его удалить из списка.
+
+### tests
+```
+f([1,1,2]) = [1,2]
+f([1,1,2,3,3]) = [1,2,3]
+f([]) = []
+f([1]) = [1]
+f([1,1,1]) = [1]
+```
+### code in pseudo language
+```
+func deleteDuplicates(head){
+    current = head
+
+    while current != nil && current.Next != nil:
+        if current.Val == current.Next.Val:
+            current.Next = current.Next.Next
+        else:
+            current = current.Next
+
+    return result.next
+}
+```
+### complexity
+space - O(1)
+runtime - O(n)
+modification input data = yes
+### code 
+```python
+def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    current = head
+
+    while current and current.next:
+        if current.val == current.next.val:
+            current.next = current.next.next
+        else:
+            current = current.next
+
+    return head
+```
+
+```golang
+func deleteDuplicates(head *ListNode) *ListNode {
+    current := head
+    for current != nil && current.Next != nil {
+        if current.Val == current.Next.Val{
+            current.Next = current.Next.Next
+        }else {
+            current = current.Next
+        }
+    }
+    return head
+}
+```
+
+### links
+### Затраченное время
+19
+### Оставшиеся вопросы
+
+
+
+
 =================================================================
 
 
