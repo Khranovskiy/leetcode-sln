@@ -1233,7 +1233,6 @@ Fri Sep 17 17:00:00 2021
 end:
 Fri Sep 17 17:15:24 2021
 2021-09-17T17:15:26+03:00
-
 ### sources, urls
 https://leetcode.com/problems/merge-two-sorted-lists/
 ### Constraints
@@ -1319,8 +1318,87 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 ### links
 ### Затраченное время
 15
++ 5 min on golang version
 ### Оставшиеся вопросы
 
+
+## 920-meeting-rooms
+### timing
+start:
+Fri Sep 17 17:34:39 2021
+2021-09-17T17:34:41+03:00
+end:
+
+### sources, urls
+https://leetcode.com/problems/meeting-rooms/
+https://www.lintcode.com/problem/920/
+### Constraints
+```
+si < ei
+```
+### Main idea
+
+### tests
+```
+canAttendMeetings
+f([(9,10),(1,5),(4,6)]) = false
+f([(0,8),(8,10)]) = false
+f([(0,30),(5,10),(15,20)]) = false
+f([(5,8),(9,15)]) = true
+```
+### code in pseudo language
+```
+func canAttendMeetings(intervals){
+    intervals = sorted(intervals, key=lambda x: x.start)
+
+    for i in range(len(intervals) - 1):
+        if intervals[i].end > intervals[i + 1].start:
+            return False
+    return True
+}
+```
+### complexity
+space - O( )
+runtime - O()
+modification input data = yes|no
+### code 
+```python
+"""
+Definition of Interval.
+class Interval(object):
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+"""
+class Solution:
+    def canAttendMeetings(self, intervals):
+        intervals = sorted(intervals, key=lambda x: x.start)
+
+        for i in range(len(intervals) - 1):
+            if intervals[i].end > intervals[i + 1].start:
+                return False
+        return True
+```
+
+```golang
+func canAttendMeetings (intervals []*Interval) bool {
+    sort.SliceStable(intervals, func(i, j int) bool {
+        return intervals[i].Start < intervals[j].Start
+    })
+    for i := 0; i < len(intervals) - 1; i++{
+        if intervals[i].End > intervals[i + 1].Start{
+            return false
+        }
+    }
+    return true
+}
+```
+
+### links
+https://freshman.tech/snippets/go/sorting-in-go/
+https://zetcode.com/golang/sort/
+### Затраченное время
+### Оставшиеся вопросы
 =================================================================
 
 
