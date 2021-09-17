@@ -715,6 +715,7 @@ Thu Sep 16 23:01:20 2021
 2021-09-16T23:01:22+03:00
 
 end:
+Fri Sep 17 03:26:57 2021
 
 ### sources, urls
 https://leetcode.com/problems/linked-list-cycle/
@@ -780,6 +781,72 @@ https://en.wikipedia.org/wiki/Cycle_detection
 ### Вопросы
 Как посчитать сложность алгоритма?
 
+## 876-middle-of-the-linked-list
+### timing
+start:
+Fri Sep 17 03:27:12 2021
+2021-09-17T03:27:14+03:00
+end:
+
+### sources, urls
+https://leetcode.com/problems/middle-of-the-linked-list/
+### Constraints
+```
+The number of nodes in the list is in the range [1, 100].
+1 <= Node.val <= 100
+```
+### tests
+```
+head = [1,2,3,4,5]
+Output: [3,4,5]
+
+head = [1,2,3,4,5,6]
+[4,5,6]
+```
+### Main idea
+Fast & Slow Pointers
+
+### complexity
+space - O( )
+runtime - O()
+modification input data = yes|no
+### code in pseudo language
+```
+func middleNode(head) {
+    fast, slow = head
+    while fast != nil && fast.next != nil {
+        fast = fast.next.next
+        slow = slow.next
+    }
+    return slow
+}
+```
+### code 
+```python
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        fast = slow = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next         
+        return slow
+```
+```golang
+func middleNode(head *ListNode) *ListNode {
+    fast, slow := head, head
+    for fast != nil && fast.Next != nil {
+        fast = fast.Next.Next
+        slow = slow.Next
+    }
+    return slow
+}
+```
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+
+
 
 =================================================================
 
@@ -814,3 +881,4 @@ modification input data = yes|no
 ```
 ### links
 ### Затраченное время
+### Оставшиеся вопросы
