@@ -896,6 +896,7 @@ f([]) = []
 func reverseList(head) {
     previous = nil
     current = head
+
     while current != nil {
         next = current.next
         current.next = previous
@@ -937,6 +938,82 @@ func reverseList(head *ListNode) *ListNode {
 48
 ### Оставшиеся вопросы
 
+
+## 234-palindrome-linked-list
+### timing
+start:
+Fri Sep 17 11:58:02 2021
+2021-09-17T11:58:07+03:00
+
+end:
+Fri Sep 17 13:08:23 2021
+2021-09-17T13:08:25+03:00
+
+### sources, urls
+https://leetcode.com/problems/palindrome-linked-list/
+### Constraints
+```
+The number of nodes in the list is in the range [1, 105].
+0 <= Node.val <= 9
+```
+### Main idea
+[ 1  2  2  1]
+[ 1  2  
+        1  2->nil]
+### tests
+```
+```
+### code in pseudo language
+```
+```
+### complexity
+space - O(1)
+runtime - O(n)
+modification input data = yes
+### code 
+```python
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        if not head:
+            return None
+        
+        middle = self.middleNode(head)
+        reverse = self.reverseList(middle)
+
+        while reverse:
+            if head.val != reverse.val:
+                return False
+
+            reverse = reverse.next
+            head = head.next
+
+        return True
+```
+
+```golang
+func isPalindrome(head *ListNode) bool {
+    if head == nil{
+        return false
+    }
+    middle := middleNode(head)
+    reversed := reverseList(middle)
+    
+    for reversed != nil {
+        if head.Val != reversed.Val{
+            return false
+        }
+        head = head.Next
+        reversed = reversed.Next
+    }
+    return true
+}
+```
+
+### links
+### Затраченное время
+70 (отвлекался)
+### Оставшиеся вопросы
+
 =================================================================
 
 
@@ -953,21 +1030,26 @@ end:
 ### Constraints
 ```
 ```
+### Main idea
+
 ### tests
 ```
 ```
-### Main idea
-
+### code in pseudo language
+```
+```
 ### complexity
 space - O( )
 runtime - O()
 modification input data = yes|no
-### code in pseudo language
-```
-```
 ### code 
 ```python
 ```
+
+```golang
+
+```
+
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
