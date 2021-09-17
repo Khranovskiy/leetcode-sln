@@ -1225,6 +1225,101 @@ func deleteDuplicates(head *ListNode) *ListNode {
 
 
 
+## 021-merge-two-sorted-lists
+### timing
+start:
+Fri Sep 17 17:00:00 2021
+2021-09-17T17:00:02+03:00
+end:
+Fri Sep 17 17:15:24 2021
+2021-09-17T17:15:26+03:00
+
+### sources, urls
+https://leetcode.com/problems/merge-two-sorted-lists/
+### Constraints
+```
+```
+### Main idea
+
+### tests
+```
+l1 = [1,2,4], l2 = [1,3,4]
+f(l1,l2) = [1,1,2,3,4,4]
+f([], []) = []
+f([], [0]) = [0]
+```
+### code in pseudo language
+```
+```
+### complexity
+space - O( )
+runtime - O()
+modification input data = yes|no
+### code 
+```python
+class Solution:
+    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        merged = ListNode(0)
+        result = merged
+        
+        while l1 and l2:
+            if l1.val < l2.val:
+                merged.next = ListNode(l1.val)
+                l1 = l1.next
+            else:
+                merged.next = ListNode(l2.val)
+                l2 = l2.next
+            merged = merged.next
+        
+        while l1:
+            merged.next = ListNode(l1.val)
+            l1 = l1.next
+            merged = merged.next
+            
+        while l2:
+            merged.next = ListNode(l2.val)
+            l2 = l2.next
+            merged = merged.next
+            
+        return result.next
+```
+
+```golang
+func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+    merged := &ListNode{Val:0}
+    result := merged
+    
+    for l1 != nil && l2 != nil{
+        if l1.Val < l2.Val {
+            merged.Next = &ListNode{Val:l1.Val}
+            l1 = l1.Next
+        } else {
+            merged.Next = &ListNode{Val:l2.Val}
+            l2 = l2.Next
+        }
+        merged = merged.Next
+    }
+    
+    for l1 != nil {
+        merged.Next = &ListNode{Val:l1.Val}
+        l1 = l1.Next
+        merged = merged.Next
+    }
+    
+    for l2 != nil {
+        merged.Next = &ListNode{Val:l2.Val}
+        l2 = l2.Next
+        merged = merged.Next
+    }
+    
+    return result.Next
+}
+```
+
+### links
+### Затраченное время
+15
+### Оставшиеся вопросы
 
 =================================================================
 
