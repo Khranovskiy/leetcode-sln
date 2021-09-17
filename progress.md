@@ -1014,6 +1014,126 @@ func isPalindrome(head *ListNode) bool {
 70 (отвлекался)
 ### Оставшиеся вопросы
 
+
+
+## 203 remove-linked-list-elements
+### timing
+start:
+Fri Sep 17 15:38:21 2021
+2021-09-17T15:38:25+03:00
+end:
+Fri Sep 17 16:34:29 2021
+2021-09-17T16:34:32+03:00
+
+### sources, urls
+https://leetcode.com/problems/remove-linked-list-elements/
+### Constraints
+```
+```
+### Main idea
+Single-linked list
+to remove current element, we have keep previous
+
+to delete first/head element -> simple return head.next
+to delete second ...
+tips: try to not use prev link
+
+анализируем следующий элемент
+текущий нужен для того чтобы у него обновить next
+если нужно удалить следующий элемент
+
+process head: if head value meets condition, shift head to the next element, then
+```
+for loop on every element
+    if current.next == nil 
+        break
+    current.next = подходит под критерий удаления
+        current.next = current.next.next
+```
+
+```
+result = ListNode(0)
+result.next = head
+...
+return result.next
+```
+техника фальшивого ответа, чтобы не связываться с prev, проверять head на null. 
+просто идём по списку.
+К head добавили перед ним элемент.
+current = result
+сейчас указываем на элемент до списка.
+Когда будем вырезать, может получиться что у нас пустой список останется в случае f([7,7,7,7], 7), благодаря этому трюку мы этот случай корретно обработаем.
+
+### tests
+```
+f([1,2,6,3,4,5,6], 6) = [1,2,3,4,5]
+f([], 1) = []
+f([7,7,7,7], 7) = []
+```
+### code in pseudo language
+```
+func removeElement(head, val){
+    result = ListNode(0)
+    result.next = head
+
+    current = result
+    while current.next:
+        if current.next.val == val:
+            current.next = current.next.next
+        else:
+            current = current.next
+
+    return result.next
+}
+```
+### complexity
+space - O(1)
+runtime - O(n)
+modification input data = yes|no
+### code 
+```python
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        result = ListNode(0)
+        result.next = head
+        
+        current = result
+        while current.next:
+
+            if current.next.val == val:
+                current.next = current.next.next
+            else:
+                current = current.next
+        
+        return result.next
+```
+
+```golang
+func removeElements(head *ListNode, val int) *ListNode {
+    result := &ListNode{Val:0}
+    result.Next = head
+    
+    current := result
+    
+    for current.Next != nil {
+        if current.Next.Val == val {
+            current.Next = current.Next.Next
+        } else {
+            current = current.Next   
+        }
+    }
+    return result.Next
+}
+```
+
+### links
+### Затраченное время
+60
+### Оставшиеся вопросы
+не проверил на пустой массив
+сделал кучу ошибок
+в golang версии забываю как инстанцировать структуру
+
 =================================================================
 
 
