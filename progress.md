@@ -691,9 +691,94 @@ def countBits(self, n: int) -> List[int]:
         ans[i] = ans[i >> 1] + i % 2
     return ans
 ```
+
+```golang
+func countBits(n int) []int {
+    ans := make([]int, n+1)
+    ans[0] = 0
+    for i := 1; i <= n; i++ {
+        ans[i] = ans[i >> 1] + i % 2
+    }
+    return ans
+}
+```
+
 ### links
+https://yourbasic.org/golang/for-loop/
 ### Затраченное время
 
+
+## 141 linked-list-cycle
+### timing
+start:
+Thu Sep 16 23:01:20 2021
+2021-09-16T23:01:22+03:00
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/linked-list-cycle/
+### Constraints
+```
+The number of the nodes in the list is in the range [0, 10^4].
+-10^5 <= Node.val <= 10^5
+pos is -1 or a valid index in the linked-list.
+```
+### tests
+```
+// head = [3, 2, 0, -4], pos = 1 -> yes
+// head = [1, 2], pos = 0 -> yes
+// head = [1], pos = -1 -> no
+// head = [1, 1, 1, 1]. pos = -1 -> false
+```
+### Main idea
+Дан односвязный список, нужно определить есть ли цикл или нет.
+Решим используя алгоритм Floyd's tortoise (floyd's cycle-finding algorithm). Есть 2 указателя, медленный и быстрый. Если представить гонку 2х машин, и они едут по кругу, одна быстрее другой и они пересекутся в конечном итоге.
+
+### complexity
+space - O(1)
+**runtime - O() ?????**
+modification input data = no
+### code in pseudo language
+```
+```
+### code 
+```python
+def hasCycle(self, head: ListNode) -> bool:
+    if not head:
+        return False
+    fast = slow = head
+    while fast.next and fast.next.next:
+        fast = fast.next.next
+        slow = slow.next
+        if fast == slow:
+            return True
+
+    return False
+```
+
+```golang
+func hasCycle(head *ListNode) bool {
+    if head == nil {
+        return false
+    }
+    fast, slow := head, head
+    for fast.Next != nil && fast.Next.Next != nil {
+        fast = fast.Next.Next
+        slow = slow.Next
+        if slow == fast {
+            return true
+        }
+    }
+    return false
+}
+```
+### links
+https://en.wikipedia.org/wiki/Cycle_detection
+### Затраченное время
+90
+### Вопросы
+Как посчитать сложность алгоритма?
 
 
 =================================================================
