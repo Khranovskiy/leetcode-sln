@@ -1660,6 +1660,79 @@ func peakIndexInMountainArray(nums []int) int {
 ### Оставшиеся вопросы
 
 
+
+## 001-two-sum (Two Pointers)
+### timing
+start:
+Sun Sep 19 01:28:03 2021
+2021-09-19T01:28:05+03:00
+
+end:
+Sun Sep 19 02:21:34 2021
+2021-09-19T02:21:37+03:00
+
+Sun Sep 19 02:38:06 2021
+2021-09-19T02:38:11+03:00
+
+### sources, urls
+https://leetcode.com/problems/two-sum/
+### Constraints
+```
+```
+### Main idea
+
+### tests
+```
+```
+### code in pseudo language
+```
+```
+### complexity
+space - O( )
+runtime - O()
+modification input data = yes|no
+### code 
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        otherPart = {}
+        for i, num in enumerate(nums):
+            diff = target - num
+            if diff in otherPart:
+                return [otherPart[diff], i]
+            
+            otherPart[num] = i
+        
+        return []
+```
+
+```golang
+func twoSum(nums []int, target int) []int {
+    other := make(map[int]int)
+    
+    for index, num := range nums {
+        diff := target - num
+        
+        if otherIndex, ok := other[diff]; ok {
+            return []int{otherIndex, index}
+        }
+        other[num] = index
+    }
+    return []int{}
+}
+```
+
+### links
+https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
+https://www.pythonpool.com/python-dynamic-array/
+https://betterprogramming.pub/stop-using-range-in-your-python-for-loops-53c04593f936
+
+https://go.dev/blog/maps
+
+### Затраченное время
+70
+### Оставшиеся вопросы
+
 =================================================================
 
 
