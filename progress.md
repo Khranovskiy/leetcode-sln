@@ -1503,12 +1503,69 @@ https://stackoverflow.com/questions/509211/understanding-slice-notation
 ### Оставшиеся вопросы
 
 
+## 744 find-smallest-letter-greater-than-target
+### timing
+start:
 
+end:
 
+### sources, urls
+https://leetcode.com/problems/find-smallest-letter-greater-than-target
+### Constraints
+```
+```
+### Main idea
 
+### tests
+```
+```
+### code in pseudo language
+```
+```
+### complexity
+space - O( )
+runtime - O()
+modification input data = yes|no
+### code 
+```python
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        left, right = 0, len(letters)-1
+    
+        while left <= right:
+            median = (right - left) // 2 + left 
+            
+            if letters[median] > target:
+                right = median - 1
+            else:
+                left = median + 1
+                
+        return letters[left % len(letters)]
 
+```
 
+```golang
+func nextGreatestLetter(nums []byte, target byte) byte {
+   low, high := 0, len(nums) - 1
 
+    for low <= high {
+        median := (low + high) >> 1
+        middle := nums[median]
+    
+        if middle <= target {
+            low = median + 1
+        } else { 
+            high = median - 1
+        }
+    }
+    return nums[low % len(nums)]
+}
+
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
 
 
 
