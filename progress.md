@@ -1569,6 +1569,97 @@ func nextGreatestLetter(nums []byte, target byte) byte {
 
 
 
+## 852-peak-index-in-a-mountain-array
+### timing
+start:
+Sun Sep 19 00:47:29 2021
+2021-09-19T00:47:31+03:00
+
+end:
+Sun Sep 19 01:15:26 2021
+2021-09-19T01:15:29+03:00
+
+### sources, urls
+https://leetcode.com/problems/peak-index-in-a-mountain-array/
+### Constraints
+```
+3 <= arr.length <= 10^4
+0 <= arr[i] <= 10^6
+arr is guaranteed to be a mountain array.
+```
+### Main idea
+Binary Search
+Follow up: Finding the O(n) is straightforward, could you find an O(log(n)) solution?
+
+so if left-current-right
+if left > current -> peek possible in left side
+
+Т.к. по условию задачи гарантированно массив из трех элементов и что гарантированно есть пик, можно найти его по условию
+arr[cur-1] < arr[cur] AND arr[cur+1] < arr[cur]
+
+Можно пройтись по массиву с 1 элемента до предпоследнего - будет O(n) решение, а можно начать с median элемента, и используя метод бинарного поиска найти пик. 
+Вначале проверить мединный элемент на условие, если да - индекс медианного элемента - ответ. Дальше нужно выбрать рассматривать левеее или правее. Так как входной массив гарантированно имеет один пик, то можно сравнить медианное значение с тем что леве и тем что правее - и обновить low,high индексы, сделать новый диапазон для поиска и так сужать диапазон для поиска и найти пик.
+### tests
+```
+f([0,1,0]) = 1
+f([0,2,1,0]) = 1
+f([0,10,5,2]) = 1
+f([3,4,5,1]) = 2
+f([24,69,100,99,79,78,67,36,26,19]) = 2
+```
+### code in pseudo language
+```
+```
+### complexity
+space - O(1)
+runtime - O(log(n))
+modification input data = yes|no
+### code 
+```python
+class Solution:
+    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+        low, high = 1, len(arr) - 2
+        
+        while low <= high:
+            median = (low + high) >> 1
+            
+            if arr[median - 1] < arr[median] and arr[median + 1] < arr[median]:
+                return median
+            
+            if arr[median - 1] > arr[median]:
+                high = median - 1
+            elif arr[median + 1] > arr[median]:
+                low = median + 1
+
+        return -1
+```
+
+```golang
+func peakIndexInMountainArray(nums []int) int {
+    low, high := 1, len(nums) - 2
+
+    for low <= high {
+        median := (low + high) >> 1
+        
+        if nums[median-1] < nums[median] && nums[median+1] < nums[median] {
+            return median
+        } 
+        if nums[median - 1] > nums[median] {
+            high = median - 1
+        } else if nums[median + 1] > nums[median] { 
+            low = median + 1
+        }
+    }
+    return -1
+}
+```
+
+### links
+### Затраченное время
+28
+### Оставшиеся вопросы
+
+
 =================================================================
 
 
