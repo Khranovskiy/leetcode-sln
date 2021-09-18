@@ -1397,8 +1397,121 @@ func canAttendMeetings (intervals []*Interval) bool {
 ### links
 https://freshman.tech/snippets/go/sorting-in-go/
 https://zetcode.com/golang/sort/
+https://hyperskill.org/learn/step/15705
 ### Затраченное время
 ### Оставшиеся вопросы
+
+
+## 704 binary-search
+### timing
+start:
+Sat Sep 18 02:22:18 2021
+2021-09-18T02:22:20+03:00
+end:
+Sat Sep 18 03:13:09 2021
+2021-09-18T03:13:07+03:00
+
+### sources, urls
+https://leetcode.com/problems/binary-search/
+### Constraints
+```
+ * 1 <= nums.length <= 10^4
+ * -10^4 < nums[i], target < 10^4
+ * All the integers in nums are unique.
+ * nums is sorted in ascending order
+```
+### Main idea
+Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.
+
+
+### tests
+```
+f([-1,0,3,5,9,12], 9) = 4
+f([-1,0,3,5,9,12], 2) = -1
+f([5], 5) = 0
+f([-1,0,3,5,9,12], 2) = -1
+```
+### code in pseudo language
+```
+```
+### complexity
+space - O(1)
+runtime - O(logn)
+modification input data = yes|no
+### code 
+```python
+class Solution:
+    def searchReccursive(self, nums: List[int], target: int) -> int:
+        if not nums:
+            return -1
+        
+        middle = len(nums) // 2
+        
+        if nums[middle] == target:
+            return middle
+        if target < nums[middle]:
+            return self.search(nums[:middle], target) # middle excluded
+        
+        index = self.search(nums[middle + 1:], target)
+        if index == -1:
+            return index
+        return middle + 1 + index
+
+    def search(self, nums: List[int], target: int) -> int:
+        low, high = 0, len(nums)-1
+    
+        while low <= high:
+            # median = (low + high) >>> 1
+            median = (high - low) // 2 + low 
+            
+            if nums[median] < target:
+                low = median + 1
+            elif nums[median] == target:
+                return median
+            else:
+                high = median - 1
+        return -1
+```
+
+```golang
+func search(nums []int, target int) int {
+    low, high := 0, len(nums) - 1
+
+    for low <= high {
+        median := (low + high) >> 1
+        // median = (high - low) / 2 + low 
+        middle := nums[median]
+        if middle == target {
+            return median
+        } 
+        if middle < target {
+            low = median + 1
+        } else { 
+            high = median - 1
+        }
+    }
+    return -1
+}
+```
+
+### links
+https://stackoverflow.com/questions/6735259/calculating-mid-in-binary-search
+https://ai.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
+https://stackoverflow.com/questions/509211/understanding-slice-notation
+### Затраченное время
+50
+### Оставшиеся вопросы
+
+
+
+
+
+
+
+
+
+
+
 =================================================================
 
 
