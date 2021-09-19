@@ -1733,6 +1733,106 @@ https://go.dev/blog/maps
 70
 ### Оставшиеся вопросы
 
+
+## 977 squares-of-a-sorted-array (Two pointers)
+### timing
+start:
+Sun Sep 19 02:46:43 2021
+2021-09-19T02:46:46+03:00
+end:
+
+### sources, urls
+https://leetcode.com/problems/squares-of-a-sorted-array/
+### Constraints
+```
+```
+### Main idea
+Two pointers, easy
+
+### tests
+```
+```
+### code in pseudo language
+```
+```
+### complexity
+space - O( )
+runtime - O()
+modification input data = yes|no
+### code 
+```python
+```
+
+```golang
+
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+
+## 977 squares-of-a-sorted-array (Two Pointers)
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/squares-of-a-sorted-array/
+### Constraints
+```
+```
+### Main idea
+
+bruteforce sln:
+```python
+def sortedSquares2(self, nums: List[int]) -> List[int]:
+    result = list(map(lambda x: x*x, nums))
+    return sorted(result)
+```
+### tests
+```
+```
+### code in pseudo language
+```
+```
+### complexity
+space - O( )
+runtime - O()
+modification input data = yes|no
+### code 
+```python
+def sortedSquares(self, nums: List[int]) -> List[int]:
+    result = [0] * len(nums)
+    low, high = 0, len(nums) - 1
+    ri = high
+    bigger = 0
+
+    while ri >= 0:
+        leftVal = nums[low] ** 2
+        rightVal = nums[high] ** 2
+
+        if leftVal > rightVal:
+            bigger = leftVal
+            low += 1
+        elif rightVal >= leftVal:
+            bigger = rightVal
+            high -= 1
+
+        result[ri] = bigger
+        ri -= 1
+    return result
+```
+
+```golang
+
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
 =================================================================
 
 
