@@ -548,3 +548,75 @@ func max(a, b int) int {
 ### Затраченное время
 12 minutes
 ### Оставшиеся вопросы
+
+
+## 189. Rotate Array
+
+### Откуда взял
+https://algorithmics-blog.github.io/blog/rotate_array/
+
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/rotate-array/description/
+
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O(1)
+runtime - O(n)
+modification input data = yes
+
+### code
+
+```python
+x
+```
+
+```go
+func rotate(n []int, k int) {
+    length := len(n)
+    if length < 2 {
+        return
+    }
+    count := k % length
+
+	revInpl(n, 0, length - 1)
+
+    revInpl(n, 0, count - 1)
+    revInpl(n, count, length - 1)
+}
+
+func revInpl(nums []int, left, right int) {
+	for left < right {
+		nums[left], nums[right] = nums[right], nums[left]
+		left++
+		right--
+	}
+}
+```
+
+### links
+### Затраченное время
+10 min
+### Оставшиеся вопросы
