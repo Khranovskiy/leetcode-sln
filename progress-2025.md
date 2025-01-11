@@ -233,3 +233,221 @@ func minPathSum(g [][]int) int {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+
+
+=================================================================
+## 289. Game of Life
+### Откуда взял
+https://algorithmics-blog.github.io/blog/game_of_life/
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/game-of-life/description/
+https://algorithmics-blog.github.io/blog/game_of_life/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+const (
+    dead = 0
+    live = 1
+    toLive = 2
+    toDead = 3
+)
+func gameOfLife(b [][]int)  {
+    for i := 0; i < len(b); i++ {
+		for j := 0; j < len(b[i]); j++ {
+            c := getliveNeighbors(i, j, b)
+
+            if b[i][j] == dead {
+                if c == 3 {
+                    b[i][j] = toLive
+                }
+                continue
+            }
+
+            if c < 2 || c > 3 {
+                b[i][j] = toDead
+                continue
+            }
+
+            b[i][j] = live
+        }
+    }
+    for i := 0; i < len(b); i++ {
+		for j := 0; j < len(b[i]); j++ {
+			if b[i][j] == toDead {
+				b[i][j] = dead
+			}
+
+			if b[i][j] == toLive {
+				b[i][j] = live
+			}
+		}
+	}
+}
+
+func getliveNeighbors(i, j int, board [][]int) int {
+    up, down, in := 0, 0, 0
+
+	if i > 0 {
+		up = getValue(board[i-1][j])
+
+		if j > 0 {
+			up += getValue(board[i-1][j-1])
+		}
+
+		if j < len(board[i])-1 {
+			up += getValue(board[i-1][j+1])
+		}
+	}
+
+	if i < len(board)-1 {
+		down = getValue(board[i+1][j])
+
+		if j > 0 {
+			up += getValue(board[i+1][j-1])
+		}
+
+		if j < len(board[i])-1 {
+			up += getValue(board[i+1][j+1])
+		}
+	}
+
+	if j > 0 {
+		in += getValue(board[i][j-1])
+	}
+
+	if j < len(board[i])-1 {
+		in += getValue(board[i][j+1])
+	}
+
+	return up + down + in
+}
+
+func getValue(val int) int {
+	if val == 2 {
+		return 0
+	}
+
+	if val == 3 {
+		return 1
+	}
+
+	return val
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+=================================================================
+## 200. Number of Islands
+### Откуда взял
+https://algorithmics-blog.github.io/blog/number_of_islands/
+https://leetcode.com/problems/number-of-islands/description/
+
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/number-of-islands/description/?source=submission-ac
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func numIslands(g [][]byte) int {
+    count := 0
+    for i:=0; i < len(g); i++{
+        for j:=0;j<len(g[i]);j++{
+            if g[i][j] == '1' {
+                count++
+                recursiveDelete(g, i, j)
+            }
+        }
+    }
+    return count
+}
+func recursiveDelete(g [][]byte, i, j int) {
+    g[i][j] = '0'
+    if j < len(g[i]) - 1 && g[i][j+1] == '1' {
+        recursiveDelete(g, i, j + 1)
+    }
+    if i < len(g) - 1 && g[i+1][j] == '1' {
+        recursiveDelete(g, i + 1, j)
+    }
+    if j > 0 && g[i][j-1] == '1' {
+        recursiveDelete(g, i, j - 1)
+    }
+    if i > 0 && g[i-1][j] == '1' {
+        recursiveDelete(g, i - 1, j)
+    }
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
