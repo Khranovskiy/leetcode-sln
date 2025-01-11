@@ -2,7 +2,7 @@
 https://leetcode.com/problems/contains-duplicate/
 
 217-contains-duplicate.py
-217-contains-duplicate.go
+q217-contains-duplicate.go
 
 https://play.golang.org/p/2JxWUXuAnDH
 
@@ -22,13 +22,13 @@ class Solution:
         return n * (n+1) // 2 - sum(nums)
 ```
 
-```golang
+```go
 func sum(array []int) int {
- r := 0  
- for _, v := range array {  
-  r += v  
- }  
- return r  
+ r := 0
+ for _, v := range array {
+  r += v
+ }
+ return r
 }
 
 func missingNumber(nums []int) int {
@@ -74,14 +74,14 @@ position - [0, n -1]
 value = nums[position]
 делать swap? типа отсортировать?
 [1,2,3,4,5,6,7,8] all integers in range 1,n
-[4,3,2,7,8,2,3,1] 
+[4,3,2,7,8,2,3,1]
 [7,3,2,4,8,2,3,1] 4-7
 [3,3,2,4,8,2,7,1] 7-3
 [2,3,3,4,8,2,7,1] 3-2
 [3,2,3,4,8,2,7,1] 2-3
 не куда не приводит
 
-# а если так 
+# а если так
 cursor = [0, n - 1]
 position = nums[cursor] - 1 // correct position
 nums[cursor] <-> nums[position]
@@ -114,7 +114,7 @@ swap
 
 новая итерация
 [1,2,3,4,3,2,7,8]
-nums[cursor:4] это 3 
+nums[cursor:4] это 3
 position = nums[cursor] - 1 -> 2
 nums[cursor:4] ~ 3 == nums[position:2] ~ 3
 значение равны делаем сдвиг cursor
@@ -143,7 +143,7 @@ cursor <- 7
 nums[cursor:7] это 8
 position 7
 nums[cursor:7] ~ 8 == nums[position:7] -> 8
-сдвиг cursor 
+сдвиг cursor
 cursor <- 8
 
 cursor == n
@@ -164,7 +164,7 @@ n = len(nums)
 while cursor < n
     value = nums[cursor]
     position = value - 1
-    
+
     if nums[cursor] != nums[position]
         # swap
         nums[cursor], nums[position] = nums[position], nums[cursor]
@@ -190,7 +190,7 @@ def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
     return result
 ```
 
-## code in python without useing any additional space 
+## code in python without useing any additional space
 ```python
 def findDisappearedNumbers2(self, nums: List[int]) -> List[int]:
     cursor = 0
@@ -199,7 +199,7 @@ def findDisappearedNumbers2(self, nums: List[int]) -> List[int]:
         value = nums[cursor]
         position = value - 1
 
-        if nums[cursor] != nums[position]: 
+        if nums[cursor] != nums[position]:
             nums[cursor], nums[position] = nums[position], nums[cursor]
         else:
             cursor += 1
@@ -240,9 +240,9 @@ f([4,1,2,1,2]) = 4
 f([1]) = 1
 ```
 ### Constraints
-1. -3 * 10^4 <= nums[i] <= 3 * 10^4 -- 30000 
+1. -3 * 10^4 <= nums[i] <= 3 * 10^4 -- 30000
 possible int16 (Range: -32768 through 32767.) will be sufficient
-### Brute force solution 
+### Brute force solution
 ```
 
 ```
@@ -258,7 +258,7 @@ for n in nums
 
 return single
 ```
-## code 
+## code
 ```python
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
@@ -293,7 +293,7 @@ f(5) = 8
 ```
 ### Constraints
 - 1 <= n <= 45
-### Brute force solution 
+### Brute force solution
 ```
  f(n) = f(n-1) + f(n-2)
 ```
@@ -304,7 +304,7 @@ modification input data = no
 ## code in pseudo language
 ```
 func climbStairs(n)
-    dp = [0] * (n + 1) 
+    dp = [0] * (n + 1)
     //n =  1, 2, 3, 4, 5
     // [0, 1, 2, 3, 5, 8]
     dp[0] = 0
@@ -314,10 +314,10 @@ func climbStairs(n)
         dp[i] = dp[i-2] + dp[i - 1]
     return dp[n]
 ```
-ooops 
+ooops
 1. Забыл проверить на n = 2, n = 1, добавил условие if n < 3 return n
 
-### code 
+### code
 ```python
 def climbStairs(self, n: int) -> int:
     if n < 3:
@@ -392,7 +392,7 @@ space - O(1)
 runtime - O(n)
 modification input data = no
 
-### code 
+### code
 ```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
@@ -485,12 +485,12 @@ class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         max_sum = nums[0]
         cur_sum = nums[0]
-        
+
         for i in range(1, len(nums)):
             num = nums[i]
             cur_sum = max(cur_sum + num, num)
             max_sum = max(max_sum, cur_sum)
-            
+
         return max_sum
 ```
 ```golang
@@ -543,7 +543,7 @@ At most 10^4 calls will be made to sumRange
 ### tests
 ```
 //[-2, 0, 3, -5, 2, -1], [0,2] =  1
-//[-2, 0, 3, -5, 2, -1], [2,5] = -1 
+//[-2, 0, 3, -5, 2, -1], [2,5] = -1
 //[-2, 0, 3, -5, 2, -1], [0,5] = -3
 ```
 
@@ -563,7 +563,7 @@ modification input data = no
 ### code in pseudo language
 ```
 ```
-### code 
+### code
 ```python
 class NumArray:
     def __init__(self, nums: List[int]):
@@ -572,7 +572,7 @@ class NumArray:
         for num in nums:
             current_sum += num
             sums.append(current_sum)
-            
+
         self.sums = sums
         print(sums)
 
@@ -590,7 +590,7 @@ type NumArray struct {
 
 func Constructor(nums []int) NumArray {
     sums := make([]int, len(nums), len(nums))
-    
+
     current_sum := 0
     for i, num := range nums {
         current_sum += num
@@ -647,7 +647,7 @@ f(7) = [0, 1, 1, 2, 1, 2, 2, 3]
 ```
 ### Main idea
 ans[i] is the number of 1s in the binary representation of i
-0 <= i <= n  
+0 <= i <= n
 f(5) = [0, 1, 1, 2, 1, 2]
 
 if i is odd we should add 1 to count of 1s in bin repr
@@ -658,15 +658,15 @@ Dynamic programming
 Hint 2
 Divide the numbers in ranges like [2-3], [4-7], [8-15] and so on. And try to generate new range from previous.
 ```
-0  0 0 0 0  
+0  0 0 0 0
 1  0 0 0 1
 2  0 0 1 0
 3  0 0 1 1   0 1 1  3
-4  0 1 0 0 
-5  0 1 0 1 
+4  0 1 0 0
+5  0 1 0 1
 6  0 1 1 0   0 1 1 ~ 3 = 6/2 ~ 6 >> 1
-7  0 1 1 1 
-8  1 0 0 0 
+7  0 1 1 1
+8  1 0 0 0
 ```
 memo[x] = memo[x >> 1] + x % 2
 memo[6] = memo[3] + 6 % 2
@@ -682,7 +682,7 @@ for i = 1 .. n // n included
     ans[i] = ans[i >> 1] + i % 2
 return ans
 ```
-### code 
+### code
 ```python
 def countBits(self, n: int) -> List[int]:
     ans = [0] * (n+1)
@@ -743,7 +743,7 @@ modification input data = no
 ### code in pseudo language
 ```
 ```
-### code 
+### code
 ```python
 def hasCycle(self, head: ListNode) -> bool:
     if not head:
@@ -821,14 +821,14 @@ func middleNode(head) {
     return slow
 }
 ```
-### code 
+### code
 ```python
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         fast = slow = head
         while fast and fast.next:
             fast = fast.next.next
-            slow = slow.next         
+            slow = slow.next
         return slow
 ```
 ```golang
@@ -873,7 +873,7 @@ Follow up: A linked list can be reversed either iteratively or recursively. Coul
          |
 ```
 Lets solve iteratively.
-On some step we have 
+On some step we have
 * current element
 * pointer to the next
 * saved element from prev step
@@ -907,7 +907,7 @@ func reverseList(head) {
 }
     1 -> 2 -> 3 -> 4 -> 5
 ```
-### code 
+### code
 ```python
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
@@ -928,7 +928,7 @@ func reverseList(head *ListNode) *ListNode {
         next := current.Next
         current.Next = previous
         previous = current
-        current = next 
+        current = next
     }
     return previous
 }
@@ -958,7 +958,7 @@ The number of nodes in the list is in the range [1, 105].
 ```
 ### Main idea
 [ 1  2  2  1]
-[ 1  2  
+[ 1  2
         1  2->nil]
 ### tests
 ```
@@ -970,13 +970,13 @@ The number of nodes in the list is in the range [1, 105].
 space - O(1)
 runtime - O(n)
 modification input data = yes
-### code 
+### code
 ```python
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         if not head:
             return None
-        
+
         middle = self.middleNode(head)
         reverse = self.reverseList(middle)
 
@@ -997,7 +997,7 @@ func isPalindrome(head *ListNode) bool {
     }
     middle := middleNode(head)
     reversed := reverseList(middle)
-    
+
     for reversed != nil {
         if head.Val != reversed.Val{
             return false
@@ -1045,7 +1045,7 @@ tips: try to not use prev link
 process head: if head value meets condition, shift head to the next element, then
 ```
 for loop on every element
-    if current.next == nil 
+    if current.next == nil
         break
     current.next = подходит под критерий удаления
         current.next = current.next.next
@@ -1057,7 +1057,7 @@ result.next = head
 ...
 return result.next
 ```
-техника фальшивого ответа, чтобы не связываться с prev, проверять head на null. 
+техника фальшивого ответа, чтобы не связываться с prev, проверять head на null.
 просто идём по списку.
 К head добавили перед ним элемент.
 current = result
@@ -1090,13 +1090,13 @@ func removeElement(head, val){
 space - O(1)
 runtime - O(n)
 modification input data = yes|no
-### code 
+### code
 ```python
 class Solution:
     def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
         result = ListNode(0)
         result.next = head
-        
+
         current = result
         while current.next:
 
@@ -1104,7 +1104,7 @@ class Solution:
                 current.next = current.next.next
             else:
                 current = current.next
-        
+
         return result.next
 ```
 
@@ -1112,14 +1112,14 @@ class Solution:
 func removeElements(head *ListNode, val int) *ListNode {
     result := &ListNode{Val:0}
     result.Next = head
-    
+
     current := result
-    
+
     for current.Next != nil {
         if current.Next.Val == val {
             current.Next = current.Next.Next
         } else {
-            current = current.Next   
+            current = current.Next
         }
     }
     return result.Next
@@ -1190,7 +1190,7 @@ func deleteDuplicates(head){
 space - O(1)
 runtime - O(n)
 modification input data = yes
-### code 
+### code
 ```python
 def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
     current = head
@@ -1254,13 +1254,13 @@ f([], [0]) = [0]
 space - O( )
 runtime - O()
 modification input data = yes|no
-### code 
+### code
 ```python
 class Solution:
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         merged = ListNode(0)
         result = merged
-        
+
         while l1 and l2:
             if l1.val < l2.val:
                 merged.next = ListNode(l1.val)
@@ -1269,17 +1269,17 @@ class Solution:
                 merged.next = ListNode(l2.val)
                 l2 = l2.next
             merged = merged.next
-        
+
         while l1:
             merged.next = ListNode(l1.val)
             l1 = l1.next
             merged = merged.next
-            
+
         while l2:
             merged.next = ListNode(l2.val)
             l2 = l2.next
             merged = merged.next
-            
+
         return result.next
 ```
 
@@ -1287,7 +1287,7 @@ class Solution:
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
     merged := &ListNode{Val:0}
     result := merged
-    
+
     for l1 != nil && l2 != nil{
         if l1.Val < l2.Val {
             merged.Next = &ListNode{Val:l1.Val}
@@ -1298,19 +1298,19 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
         }
         merged = merged.Next
     }
-    
+
     for l1 != nil {
         merged.Next = &ListNode{Val:l1.Val}
         l1 = l1.Next
         merged = merged.Next
     }
-    
+
     for l2 != nil {
         merged.Next = &ListNode{Val:l2.Val}
         l2 = l2.Next
         merged = merged.Next
     }
-    
+
     return result.Next
 }
 ```
@@ -1361,7 +1361,7 @@ func canAttendMeetings(intervals){
 space - O( )
 runtime - O()
 modification input data = yes|no
-### code 
+### code
 ```python
 """
 Definition of Interval.
@@ -1438,20 +1438,20 @@ f([-1,0,3,5,9,12], 2) = -1
 space - O(1)
 runtime - O(logn)
 modification input data = yes|no
-### code 
+### code
 ```python
 class Solution:
     def searchReccursive(self, nums: List[int], target: int) -> int:
         if not nums:
             return -1
-        
+
         middle = len(nums) // 2
-        
+
         if nums[middle] == target:
             return middle
         if target < nums[middle]:
             return self.search(nums[:middle], target) # middle excluded
-        
+
         index = self.search(nums[middle + 1:], target)
         if index == -1:
             return index
@@ -1459,11 +1459,11 @@ class Solution:
 
     def search(self, nums: List[int], target: int) -> int:
         low, high = 0, len(nums)-1
-    
+
         while low <= high:
             # median = (low + high) >>> 1
-            median = (high - low) // 2 + low 
-            
+            median = (high - low) // 2 + low
+
             if nums[median] < target:
                 low = median + 1
             elif nums[median] == target:
@@ -1479,14 +1479,14 @@ func search(nums []int, target int) int {
 
     for low <= high {
         median := (low + high) >> 1
-        // median = (high - low) / 2 + low 
+        // median = (high - low) / 2 + low
         middle := nums[median]
         if middle == target {
             return median
-        } 
+        }
         if middle < target {
             low = median + 1
-        } else { 
+        } else {
             high = median - 1
         }
     }
@@ -1526,20 +1526,20 @@ https://leetcode.com/problems/find-smallest-letter-greater-than-target
 space - O( )
 runtime - O()
 modification input data = yes|no
-### code 
+### code
 ```python
 class Solution:
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
         left, right = 0, len(letters)-1
-    
+
         while left <= right:
-            median = (right - left) // 2 + left 
-            
+            median = (right - left) // 2 + left
+
             if letters[median] > target:
                 right = median - 1
             else:
                 left = median + 1
-                
+
         return letters[left % len(letters)]
 
 ```
@@ -1551,10 +1551,10 @@ func nextGreatestLetter(nums []byte, target byte) byte {
     for low <= high {
         median := (low + high) >> 1
         middle := nums[median]
-    
+
         if middle <= target {
             low = median + 1
-        } else { 
+        } else {
             high = median - 1
         }
     }
@@ -1597,7 +1597,7 @@ if left > current -> peek possible in left side
 Т.к. по условию задачи гарантированно массив из трех элементов и что гарантированно есть пик, можно найти его по условию
 arr[cur-1] < arr[cur] AND arr[cur+1] < arr[cur]
 
-Можно пройтись по массиву с 1 элемента до предпоследнего - будет O(n) решение, а можно начать с median элемента, и используя метод бинарного поиска найти пик. 
+Можно пройтись по массиву с 1 элемента до предпоследнего - будет O(n) решение, а можно начать с median элемента, и используя метод бинарного поиска найти пик.
 Вначале проверить мединный элемент на условие, если да - индекс медианного элемента - ответ. Дальше нужно выбрать рассматривать левеее или правее. Так как входной массив гарантированно имеет один пик, то можно сравнить медианное значение с тем что леве и тем что правее - и обновить low,high индексы, сделать новый диапазон для поиска и так сужать диапазон для поиска и найти пик.
 ### tests
 ```
@@ -1614,18 +1614,18 @@ f([24,69,100,99,79,78,67,36,26,19]) = 2
 space - O(1)
 runtime - O(log(n))
 modification input data = yes|no
-### code 
+### code
 ```python
 class Solution:
     def peakIndexInMountainArray(self, arr: List[int]) -> int:
         low, high = 1, len(arr) - 2
-        
+
         while low <= high:
             median = (low + high) >> 1
-            
+
             if arr[median - 1] < arr[median] and arr[median + 1] < arr[median]:
                 return median
-            
+
             if arr[median - 1] > arr[median]:
                 high = median - 1
             elif arr[median + 1] > arr[median]:
@@ -1640,13 +1640,13 @@ func peakIndexInMountainArray(nums []int) int {
 
     for low <= high {
         median := (low + high) >> 1
-        
+
         if nums[median-1] < nums[median] && nums[median+1] < nums[median] {
             return median
-        } 
+        }
         if nums[median - 1] > nums[median] {
             high = median - 1
-        } else if nums[median + 1] > nums[median] { 
+        } else if nums[median + 1] > nums[median] {
             low = median + 1
         }
     }
@@ -1691,7 +1691,7 @@ https://leetcode.com/problems/two-sum/
 space - O( )
 runtime - O()
 modification input data = yes|no
-### code 
+### code
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
@@ -1700,19 +1700,19 @@ class Solution:
             diff = target - num
             if diff in otherPart:
                 return [otherPart[diff], i]
-            
+
             otherPart[num] = i
-        
+
         return []
 ```
 
 ```golang
 func twoSum(nums []int, target int) []int {
     other := make(map[int]int)
-    
+
     for index, num := range nums {
         diff := target - num
-        
+
         if otherIndex, ok := other[diff]; ok {
             return []int{otherIndex, index}
         }
@@ -1759,7 +1759,7 @@ Two pointers, easy
 space - O( )
 runtime - O()
 modification input data = yes|no
-### code 
+### code
 ```python
 ```
 
@@ -1801,7 +1801,7 @@ def sortedSquares2(self, nums: List[int]) -> List[int]:
 space - O( )
 runtime - O()
 modification input data = yes|no
-### code 
+### code
 ```python
 def sortedSquares(self, nums: List[int]) -> List[int]:
     result = [0] * len(nums)
@@ -1835,38 +1835,431 @@ def sortedSquares(self, nums: List[int]) -> List[int]:
 
 =================================================================
 
-
-=================================================================
-# template
-
-## name
+## 26 remove-duplicates-from-sorted-array
 ### timing
 start:
 
 end:
 
 ### sources, urls
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+
 ### Constraints
 ```
+x
 ```
+
 ### Main idea
 
-### tests
+### test cases (normal and edge cases)
 ```
+x
 ```
+
 ### code in pseudo language
+
 ```
+x
 ```
+
 ### complexity
+
 space - O( )
 runtime - O()
 modification input data = yes|no
-### code 
+
+### code
+
 ```python
+x
 ```
+
 
 ```golang
 
+func removeDuplicates(nums []int) int {
+	// [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+	// asc order
+	// inplace remove duplicates
+	// ret number of unique elements in nums
+
+	//  0   1 2 3 4 5 6
+	// -100 0 2 2 2 5 5
+	//        k     r
+	// -100 0 2 5 2 2 5  swap
+	//          k     r
+	// left 0
+	// right 1
+	// if v[r] > v[l] {
+	//   if r > l + 1
+	//       swap v[l+1] v[r]
+	//  l++
+	//  r++
+	// }
+
+	// if val[right] == val[left]
+	//      inc(right)
+	if len(nums) == 0 {
+		return 0
+	}
+	if len(nums) == 1 {
+		return 1
+	}
+	k := 0
+	r := 1
+	for ; r < len(nums); {
+		if nums[r] > nums[k]{
+			if r  > k + 1 {
+				swap(nums, k+1, r)
+			}
+			k++
+			r++
+		} else if nums[r] == nums[k]{
+			r++
+		}
+	}
+	//fmt.Println(nums[:k+1])
+	return k + 1
+}
+func swap(nums []int, a, b int){
+	tmp := nums[a]
+	nums[a] = nums[b]
+	nums[b] = tmp
+}
+// 20 minutes to code
+
+```
+
+### links
+### Затраченное время
+20m
+### Оставшиеся вопросы
+
+
+=================================================================
+## 122 Best time to buy and sell stock II
+
+### timing
+
+4min 30 sec
+
+start:
+
+end:
+
+### sources, urls
+
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+
+https://algorithmics-blog.github.io/2023/08/27/best_time_to_buy_and_sell_stock_2.html
+
+### Constraints
+```
+1 <= prices.length <= 3 * 104
+0 <= prices[i] <= 104
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+    // [7,1,5,3,6,4]
+    // You can only hold at most one share of the stock at any time
+    // However, you can buy it then immediately sell it on the same day.
+    // like skip a day
+
+    // decide to buy and/or sell the stock
+
+    // Find and return the maximum profit you can achieve
+
+    //[7,1,5,3,6,4]      B buy
+    // - B S B S -  x?   - skip (buy+sell)
+    //     4   3    7    S sell
+
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```golang
+func maxProfit(p []int) int {
+    res,d := 0,0
+    l := len(p)
+    for i:=0;i<l-1;i++{
+        d = p[i+1] - p[i]
+
+        if (d>0){
+            res = res + d
+        }
+    }
+    return res
+}
+// 4min 30 sec
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+=================================================================
+## 001 - Two Sum
+
+### timing
+start:
+
+end:
+
+### sources, urls
+
+https://leetcode.com/problems/two-sum/
+
+https://algorithmics-blog.github.io/2023/08/30/two_sum.html
+
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```golang
+func twoSum(nums []int, target int) []int {
+    // return indices of the two numbers such that they add up to target.
+
+    indexMap := make(map[int]int)
+
+    for i,num := range nums{
+        complement := target - num
+
+		if secondIndex, ok := indexMap[complement];ok {
+			return []int{i, secondIndex}
+		}
+		indexMap[num] = i
+    }
+    return nil
+}
+// 9 min
+```
+
+### links
+### Затраченное время
+
+9 min
+
+### Оставшиеся вопросы
+
+
+=================================================================
+## 167. Two Sum II - Input Array is Sorted
+### timing
+start:
+
+end:
+
+### sources, urls
+
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+
+https://algorithmics-blog.github.io/2023/09/02/two_sum_sorted_array.html
+
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```golang
+func twoSum(n []int, target int) []int {
+    // array of integers numbers
+    // sorted in non-decreasing order
+    // You may not use the same element twice.
+
+    // must use only constant extra space.
+
+    // [2,7,11,15] target 9
+    // two pointers
+
+    // 2 + 15 > 9
+    // right value greater target -> rightIndex--
+
+    sum, left, right := 0, 0, len(n) -1
+
+    for ;left < right;{
+        sum =  n[left]+n[right]
+
+        if sum == target {
+            return []int{left+1, right+1}
+        } else if sum > target{
+            right--
+        } else {
+            left++
+        }
+    }
+    return nil
+}
+// 6 min
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+=================================================================
+
+## 15. 3Sum
+### timing
+start:
+30 min
+end:
+
+### sources, urls
+https://leetcode.com/problems/3sum/description/?source=submission-ac
+
+https://algorithmics-blog.github.io/2023/09/06/three_sum.html
+
+### Constraints
+```
+    // n[i] + n[j] + n[k] == 0
+    // the solution set must not contain duplicate triplets
+
+    // 3 <= nums.length <= 3000
+    // -105 <= nums[i] <= 105
+
+    // [-1,0,1,2,-1,-4]
+
+    // Acceptance Rate 34.0%
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+
+func threeSum(nums []int) [][]int {
+	// Создаем слайс для результатов
+	result := make([][]int, 0)
+
+	// Предварительно сортируем слайс по возрастанию
+	sort.Ints(nums)
+
+	for i, num := range nums {
+		// Не проверяем текущее число, если оно такое же, как и предыдущее, потому для него мы получим такой же результат.
+		if i != 0 && nums[i-1] == num {
+			continue
+		}
+
+		left := i + 1
+		right := len(nums) - 1
+
+		for left < right {
+			sum := num + nums[left] + nums[right]
+
+			if sum == 0 {
+				result = append(result, []int{num, nums[left], nums[right]})
+				right -= 1
+				left += 1
+
+				for left < right && nums[left] == nums[left-1] {
+					left += 1
+				}
+			} else if sum > 0 {
+				right -= 1
+			} else {
+				left = left + 1
+			}
+		}
+	}
+
+	return result
+}
 ```
 
 ### links
