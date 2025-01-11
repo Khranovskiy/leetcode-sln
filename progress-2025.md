@@ -451,3 +451,100 @@ func recursiveDelete(g [][]byte, i, j int) {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+
+
+
+=================================================================
+## 198. House Robber
+### Откуда взял
+https://algorithmics-blog.github.io/blog/house_robber/
+### timing
+start:
+
+end:
+
+12 minutes
+
+### sources, urls
+https://leetcode.com/problems/house-robber/description/
+https://algorithmics-blog.github.io/blog/house_robber/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+The robber can arrive at the last house either from the third-to-last house or the fourth-to-last house. So, knowing the maximum amount looted for the third-to-last and fourth-to-last houses, it is easy to calculate the amount for the last house by choosing the maximum of the two and adding the value of the current house. The same principle applies to the third-to-last and fourth-to-last houses (and to the second-to-last, in case it is more profitable for the robber to stop at the second-to-last house).
+
+```
+nums = [2, 7, 9, 3, 1]
+           p  p     с
+```
+two types of prev: fourth-to-last (pos-3) - 7 and third-to-last (pos-2) - 9;
+
+### test cases (normal and edge cases)
+```
+nums = [2, 0, 0, 0, 1]
+nums = [2, 0]
+nums = [2]
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func rob(nums []int) int {
+	switch len(nums) {
+	case 0:
+		return 0
+	case 1:
+		return nums[0]
+	case 2:
+        max := nums[0]
+        if nums[1] > max{
+            max = nums[1]
+        }
+        return max
+	}
+    nums[2] = nums[2] + nums[0]
+
+	for i := 3; i < len(nums); i++ {
+		max := nums[i-2]
+		if  nums[i - 3] > max {
+			max = nums[i-3]
+		}
+		nums[i] = nums[i] + max
+	}
+	return max(nums[len(nums)-1], nums[len(nums)-2])
+}
+
+func max(a, b int) int {
+	if a < b {
+		return b
+	}
+	return a
+}
+```
+
+### links
+### Затраченное время
+12 minutes
+### Оставшиеся вопросы
