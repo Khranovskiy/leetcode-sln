@@ -620,3 +620,116 @@ func revInpl(nums []int, left, right int) {
 ### Затраченное время
 10 min
 ### Оставшиеся вопросы
+
+
+## 208. Implement Trie (Prefix Tree)
+### Откуда взял
+https://algorithmics-blog.github.io/blog/implement_trie_prefix_tree/
+
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/implement-trie-prefix-tree/
+https://algorithmics-blog.github.io/blog/implement_trie_prefix_tree/
+
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O(1)
+runtime - O(n)
+modification input data = no
+
+### code
+
+```python
+x
+```
+
+
+```go
+type Trie struct {
+    children   map[rune]*Trie
+	isFullWord bool
+}
+
+
+func Constructor() Trie {
+    return Trie{
+        children: nil,//make(map[rune]*Trie),
+    }
+}
+
+
+func (t *Trie) Insert(word string)  {
+    t.insert([]rune(word))
+}
+
+
+func (t *Trie) Search(word string) bool {
+    node, exist := t.traverse([]rune(word))
+	if !exist {
+		return false
+	}
+	return node.isFullWord
+}
+
+
+func (t *Trie) StartsWith(prefix string) bool {
+    _, exist := t.traverse([]rune(prefix))
+
+	return exist
+}
+
+func (t *Trie) insert(word []rune) {
+    if len(word) == 0 {
+        t.isFullWord = true
+        return
+    }
+    child, exist := t.children[word[0]]
+    if !exist {
+        child = &Trie{
+            children: nil, //make(map[rune]*Trie),
+        }
+        if t.children == nil{
+            t.children = make(map[rune]*Trie)
+        }
+        t.children[word[0]] = child
+    }
+    child.insert(word[1:])
+}
+
+func (t *Trie) traverse(prefix []rune) (*Trie, bool){
+    if len(prefix) == 0 {
+        return t, true
+    }
+    child, exist := t.children[prefix[0]]
+    if !exist{
+        return nil, false
+    }
+    return child.traverse(prefix[1:])
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
