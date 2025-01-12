@@ -1017,3 +1017,65 @@ func isSameAfterReversals(num int) bool {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+=================================================================
+# 206. Reverse Linked List
+### Откуда взял
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/reverse-linked-list/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func reverseList(head *ListNode) *ListNode {
+    var (
+        curr = head
+        prev *ListNode = nil
+    )
+    for curr != nil {
+        next := curr.Next
+        curr.Next = prev
+
+        prev = curr
+        curr = next
+    }
+    return prev
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
