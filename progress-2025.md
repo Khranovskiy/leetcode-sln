@@ -1079,3 +1079,156 @@ func reverseList(head *ListNode) *ListNode {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+=================================================================
+# 7. Reverse Integer
+### Откуда взял
+https://algorithmics-blog.github.io/blog/reverse_integer/
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/reverse-integer/
+https://algorithmics-blog.github.io/blog/reverse_integer/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func reverse(left int) int {
+	res := 0
+
+	for left != 0 {
+		right := left % 10
+		left = left / 10
+
+		if res > math.MaxInt32/10 || res == math.MaxInt32/10 && right > 7 {
+			return 0
+		}
+		if res < math.MinInt32/10 || res == math.MinInt32/10 && right < -7 {
+			return 0
+		}
+		res = res*10 + right
+	}
+	return res
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+=================================================================
+# 735. Asteroid Collision
+### Откуда взял
+https://algorithmics-blog.github.io/blog/asteroid_collision/
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/asteroid-collision/description/
+https://algorithmics-blog.github.io/blog/asteroid_collision/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func asteroidCollision(asteroids []int) []int {
+	stack := make([]int, 0, len(asteroids))
+
+	for i := 0; i < len(asteroids); i++ {
+		stack = appendToStack(stack, asteroids[i])
+	}
+	return stack
+}
+func appendToStack(stack []int, current int) []int {
+	if len(stack) == 0 {
+		return append(stack, current)
+	}
+	top := stack[len(stack)-1]
+
+	if top*current > 0 || top < 0 {
+		// put back to the stack
+		// add the current element to the stack.
+		return append(stack, current)
+	}
+	// top positive and curr element negative
+	// curr asteroid has a smaller mass
+	if top > -1*current {
+		// return top back to the stack and move to the next element.
+		return stack
+	}
+
+	// If the top asteroid has a smaller mass, we extract the next element from the stack without returning the top element to the stack and repeat the checks with a new pair.
+	if top < -1*current {
+		return appendToStack(stack[:len(stack)-1], current)
+	}
+	// If the elements have the same mass
+	// move to the next element
+	// without returning the top element to the stack.
+	return stack[:len(stack)-1]
+}
+```
+
+### links
+### Затраченное время
+20 min
+### Оставшиеся вопросы
