@@ -883,3 +883,82 @@ func productExceptSelf(nums []int) []int {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+=================================================================
+# 412. Fizz Buzz
+### Откуда взял
+https://algorithmics-blog.github.io/blog/fizz_buzz/ 
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/fizz-buzz/description/
+https://algorithmics-blog.github.io/blog/fizz_buzz/ 
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```go
+func fizzBuzz(n int) []string {
+	res := make([]string, n)
+	for i := 1; i <= n; i++ {
+		if i%3 == 0 && i%5 == 0 {
+			res[i-1] = "FizzBuzz"
+		} else if i%3 == 0 {
+			res[i-1] = "Fizz"
+		} else if i%5 == 0 {
+			res[i-1] = "Buzz"
+		} else {
+			res[i-1] = strconv.Itoa(i)
+		}
+	}
+    return res
+}
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func fizzBuzz(n int) []string {
+	res := make([]string, n)
+	for i := 1; i <= n; i++ {
+        if i%3 == 0 {
+			res[i-1] = "Fizz"
+		}
+        if i%5 == 0 {
+			res[i-1] = res[i-1] + "Buzz"
+		} 
+        if len(res[i-1]) == 0 {
+			res[i-1] = strconv.Itoa(i)
+		}
+	}
+    return res
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
