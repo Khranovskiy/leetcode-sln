@@ -1232,3 +1232,178 @@ func appendToStack(stack []int, current int) []int {
 ### Затраченное время
 20 min
 ### Оставшиеся вопросы
+
+=================================================================
+# 739. Daily Temperatures
+### Откуда взял
+https://algorithmics-blog.github.io/blog/daily_temperatures/
+
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/daily-temperatures/description/
+https://algorithmics-blog.github.io/blog/daily_temperatures/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func dailyTemperatures(temperatures []int) []int {
+	stack := make([]int, 0, len(temperatures))
+	res := make([]int, len(temperatures)) // filled with zeros
+	for j, dailyTemp := range temperatures {
+		for len(stack) > 0 && dailyTemp > temperatures[stack[len(stack)-1]] {
+			i := stack[len(stack)-1] // индекс предыдущего дня попрохладне
+			stack = stack[:len(stack)-1]
+			res[i] = j - i // j or tempIndex индекс первого теплого дня
+		}
+		stack = append(stack, j)
+	}
+	return res
+}
+
+// [73,74,75,71,69,72,76,73]
+
+// [9 8 7 6 5 4 3 2 10]
+// [8 7 6 5 4 3 2 1 0]
+
+// [ 1 2 3 4 5 6 7 8]
+
+// j = 0, dayTemp 1, stack []: stack is [0]
+// j = 1, dayTemp 2, stack [0]: 2 > temp[ stack head aka 0] 2 > 1, stack [], res[head] = j - head
+```
+
+### links
+### Затраченное время
+бесконечность
+
+### Оставшиеся вопросы
+Similar problems:
+- 901. Online Stock Span (M) https://leetcode.com/problems/online-stock-span/
+- 496. Next Greater Element I (E) https://leetcode.com/problems/next-greater-element-i/
+
+
+=================================================================
+# 605. Can Place Flowers
+### Откуда взял
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/can-place-flowers/description/
+https://algorithmics-blog.github.io/blog/can_place_flowers/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func canPlaceFlowers(flowerbed []int, n int) bool {
+	if n == 0 {
+		return true
+	}
+
+	if len(flowerbed) == 0 {
+		return false
+	}
+
+	if len(flowerbed) == 1 {
+		if n > 1 {
+			return false
+		}
+
+		return flowerbed[0] == 0
+	}
+	for i := 0; i < len(flowerbed); i++ {
+		if flowerbed[i] == 1 {
+			i++
+			continue
+		}
+
+		if canBePlaced(flowerbed, i) {
+			flowerbed[i] = 1
+			n--
+			i++
+		}
+
+		if n == 0 {
+			return true
+		}
+	}
+
+	return n == 0
+}
+
+func canBePlaced(flowerbed []int, i int) bool {
+	if i == 0 {
+		return flowerbed[i+1] == 0
+	}
+
+	if i == len(flowerbed)-1 {
+		return flowerbed[i-1] == 0
+	}
+	return flowerbed[i-1] == 0 && flowerbed[i+1] == 0
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
