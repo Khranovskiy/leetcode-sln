@@ -1,5 +1,4 @@
-=================================================================
-## 011. container-with-most-water
+# 011. container-with-most-water
 ### Откуда взял
 https://algorithmics-blog.github.io/blog/container_with_most_water/
 
@@ -138,11 +137,7 @@ func maxArea(h []int) int {
 ### Затраченное время
 ### Оставшиеся вопросы
 
-# template
-
-=================================================================
-
-## 064. minimum_path_sum
+# 064. minimum_path_sum
 ### Откуда взял
 https://algorithmics-blog.github.io/blog/minimum_path_sum/
 
@@ -236,8 +231,7 @@ func minPathSum(g [][]int) int {
 
 
 
-=================================================================
-## 289. Game of Life
+# 289. Game of Life
 ### Откуда взял
 https://algorithmics-blog.github.io/blog/game_of_life/
 ### timing
@@ -374,8 +368,7 @@ func getValue(val int) int {
 ### Затраченное время
 ### Оставшиеся вопросы
 
-=================================================================
-## 200. Number of Islands
+# 200. Number of Islands
 ### Откуда взял
 https://algorithmics-blog.github.io/blog/number_of_islands/
 https://leetcode.com/problems/number-of-islands/description/
@@ -452,11 +445,7 @@ func recursiveDelete(g [][]byte, i, j int) {
 ### Затраченное время
 ### Оставшиеся вопросы
 
-
-
-
-=================================================================
-## 198. House Robber
+# 198. House Robber
 ### Откуда взял
 https://algorithmics-blog.github.io/blog/house_robber/
 ### timing
@@ -550,7 +539,7 @@ func max(a, b int) int {
 ### Оставшиеся вопросы
 
 
-## 189. Rotate Array
+# 189. Rotate Array
 
 ### Откуда взял
 https://algorithmics-blog.github.io/blog/rotate_array/
@@ -727,6 +716,85 @@ func (t *Trie) traverse(prefix []rune) (*Trie, bool){
         return nil, false
     }
     return child.traverse(prefix[1:])
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+=================================================================
+
+# 36. Valid Sudoku
+### Откуда взял
+### timing
+start:
+
+end:
+
+### sources, urls
+
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func isValidSudoku(board [][]byte) bool {
+	var (
+		rows    [9][9]bool
+		columns [9][9]bool
+		quads   = make(map[string][9]bool, 9)
+	)
+	n := len(board)
+	for row := 0; row < n; row++ {
+		for col := 0; col < n; col++ {
+			if board[row][col] == '.' {
+				continue
+			}
+			strNum := string(board[row][col])
+			num, _ := strconv.Atoi(strNum)
+			pos := num - 1
+			key := fmt.Sprintf("%d:%d", row/3, col/3)
+
+			if rows[row][pos] || columns[col][pos] || quads[key][pos] {
+				return false
+			}
+			rows[row][pos] = true
+			columns[col][pos] = true
+
+			temp := quads[key]
+			temp[pos] = true
+			quads[key] = temp
+		}
+	}
+	return true
 }
 ```
 
