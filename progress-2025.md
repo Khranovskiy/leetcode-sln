@@ -801,3 +801,85 @@ func isValidSudoku(board [][]byte) bool {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+=================================================================
+# 238. Product of Array Except Self
+### Откуда взял
+https://algorithmics-blog.github.io/blog/product_of_array_except_self/
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/product-of-array-except-self/description/
+https://algorithmics-blog.github.io/blog/product_of_array_except_self/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```go
+func productExceptSelf2(nums []int) []int {
+	leftProduct := make([]int, len(nums))
+	rightProduct := make([]int, len(nums))
+
+	leftProduct[0] = 1
+	for i := 1; i < len(nums); i++ {
+		leftProduct[i] = leftProduct[i-1] * nums[i-1]
+	}
+
+	rightProduct[len(nums)-1] = 1
+	for j := len(nums) - 2; j >= 0; j-- {
+		rightProduct[j] = rightProduct[j+1] * nums[j+1]
+	}
+
+	for i := 0; i < len(nums); i++ {
+		nums[i] = leftProduct[i] * rightProduct[i]
+	}
+	return nums
+}
+```
+
+### complexity
+
+space - O(1)
+runtime - O(n)
+modification input data = no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func productExceptSelf(nums []int) []int {
+	res := make([]int, len(nums))
+
+	res[0] = 1
+	for i := 1; i < len(nums); i++ {
+		res[i] = res[i-1] * nums[i-1]
+	}
+
+	r := 1
+	for j := len(nums) - 1; j >= 0; j-- {
+		res[j] = r * res[j]
+		r *= nums[j]
+	}
+	return res
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
