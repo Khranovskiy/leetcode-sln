@@ -2,7 +2,7 @@
 https://leetcode.com/problems/contains-duplicate/
 
 217-contains-duplicate.py
-q217-contains-duplicate.go
+217-contains-duplicate.go
 
 https://play.golang.org/p/2JxWUXuAnDH
 

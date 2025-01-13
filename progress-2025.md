@@ -1407,3 +1407,148 @@ func canBePlaced(flowerbed []int, i int) bool {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+=================================================================
+# 345. Reverse Vowels of a String
+### Откуда взял
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/reverse-vowels-of-a-string/
+https://algorithmics-blog.github.io/blog/reverse_vowels_of_string/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func reverseVowels(s string) string {
+	lp, rp := 0, len(s)-1
+	runes := []rune(s)
+	for lp < rp {
+		if !isVowel(runes[lp]) {
+			lp++
+		}
+		if !isVowel(runes[rp]) {
+			rp--
+		}
+		if isVowel(runes[lp]) && isVowel(runes[rp]) {
+			runes[lp], runes[rp] = runes[rp], runes[lp]
+			lp++
+			rp--
+		}
+	}
+	return string(runes)
+}
+func isVowel(ch rune) bool {
+	return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+		ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U'
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+=================================================================
+
+
+# 435. Non-overlapping Intervals
+### Откуда взял
+https://algorithmics-blog.github.io/blog/non_overlapping_intervals/
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/non-overlapping-intervals/
+
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( logn) .. 0(n)  -- thanks to sorting
+runtime - O(nlogn) -- thanks to sorting
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func eraseOverlapIntervals(intervals [][]int) int {
+	// [[1,2],[2,3],[3,4],[1,3]]
+    sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][1] < intervals[j][1]
+	})
+    [[1,2],[2,3],[1,3],[3,4]]
+	res := 0
+	k := intervals[0][1] // 2
+	for idx := 1; idx < len(intervals); idx++ {
+        // [1,3]
+		end := intervals[idx][1]
+		start := intervals[idx][0]
+
+        //  1 >= 2
+		if start >= k {
+			k = end
+		} else {
+			res++ // 1
+		}
+	}
+	return res
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы

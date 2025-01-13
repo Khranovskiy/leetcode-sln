@@ -12,3 +12,16 @@ func isSameAfterReversals(num int) bool {
 	}
 	return !(num%10 == 0)
 }
+
+func reverse(num int) int {
+	res := 0
+
+	for num != 0 {
+		right := num % 10
+		num = num / 10
+
+		res = res*10 + right
+	}
+
+	return res
+}
