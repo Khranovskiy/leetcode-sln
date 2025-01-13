@@ -1552,3 +1552,76 @@ func eraseOverlapIntervals(intervals [][]int) int {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+=================================================================
+
+# 66. Plus One
+### Откуда взял
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/plus-one/
+https://algorithmics-blog.github.io/blog/plus_one/
+
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func plusOne(digits []int) []int {
+    addition := 0
+    for i:=len(digits)-1; i>=0;i--{
+        if i == len(digits)-1{
+            addition = 1
+        }
+        val := digits[i] + addition
+        if val > 9 {
+            digits[i] = val % 10
+            addition = 1
+        } else {
+            digits[i] = val
+            addition = 0
+        }
+    }
+    res := make([]int, 0, len(digits)+1)
+    if addition != 0 {
+        res = append(res, addition)
+    }
+    res = append(res, digits...)
+    return res
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
