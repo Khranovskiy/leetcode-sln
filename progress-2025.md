@@ -1628,7 +1628,7 @@ func plusOne(digits []int) []int {
 
 
 =================================================================
-# name
+# 151. Reverse Words in a String
 ### Откуда взял
 ### timing
 start:
@@ -1731,6 +1731,89 @@ func trimSpaces(sRunes []rune) []rune {
 	}
 
 	return sRunes[:j]
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+
+=================================================================
+# 394. Decode String
+### Откуда взял
+https://algorithmics-blog.github.io/blog/decode_string/
+### timing
+start:
+
+end:
+
+### sources, urls
+https://algorithmics-blog.github.io/blog/decode_string/
+
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func decodeString(s string) string {
+    res := ""
+    for i := 0; i < len(s); i++ {
+        if s[i] >= 'a' && s[i] <= 'z' {
+			res += string(s[i])
+			continue
+		}
+
+        count := 0
+		for s[i] != '[' {
+			count = count*10 + int(s[i]-'0')
+			i++
+		}
+        bracket := 1
+		j := i + 1
+		for bracket > 0 {
+			if s[j] == '[' {
+				bracket++
+			}
+			if s[j] == ']' {
+				bracket--
+			}
+			j++
+		}
+        subStr := s[i+1:j-1]
+        inner := decodeString(subStr)
+		res += strings.Repeat(inner, count)
+		i = j - 1
+	}
+
+	return res
 }
 ```
 
