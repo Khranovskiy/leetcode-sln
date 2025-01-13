@@ -1820,3 +1820,97 @@ func decodeString(s string) string {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+=================================================================
+# name
+### Откуда взял
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/dota2-senate/submissions/1507766234/
+https://algorithmics-blog.github.io/blog/dota2_senate/
+
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func predictPartyVictory(senate string) string {
+	rCount, dCount := 0, 0
+	queue := make([]byte, 0, 2*len(senate))
+	for i := 0; i < len(senate); i++ {
+		if senate[i] == 'R' {
+			rCount++
+		} else {
+			dCount++
+		}
+
+		queue = append(queue, senate[i])
+	}
+
+	for rCount > 0 && dCount > 0 {
+		firstElem := queue[0]
+		killCount := 1
+		queue = append(queue, firstElem)
+		queue = queue[1:]
+
+		for killCount > 0 && rCount > 0 && dCount > 0 {
+			if queue[0] == firstElem {
+				queue = append(queue, queue[0])
+				queue = queue[1:]
+				killCount++
+			} else {
+				if queue[0] == 'R' {
+					rCount--
+				} else {
+					dCount--
+				}
+				killCount--
+				queue = queue[1:]
+			}
+		}
+		fmt.Println(string(queue))
+	}
+
+	if rCount > 0 {
+		return "Radiant"
+	}
+
+	return "Dire"
+}
+
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
