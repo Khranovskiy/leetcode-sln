@@ -2250,3 +2250,65 @@ func closeStrings(word1 string, word2 string) bool {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+
+=================================================================
+# 2390. Removing Stars From a String
+### Откуда взял
+https://algorithmics-blog.github.io/blog/remove_stars/
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/removing-stars-from-a-string/description/
+https://algorithmics-blog.github.io/blog/remove_stars/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func removeStars(s string) string {
+	stack := make([]rune, 0, len(s))
+	for _, v := range []rune(s) {
+		if v == '*' {
+			stack = stack[:len(stack)-1]
+		} else {
+			stack = append(stack, v)
+		}
+	}
+	return string(stack)
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
