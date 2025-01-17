@@ -1988,3 +1988,265 @@ func guessNumber(n int) int {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+
+
+=================================================================
+# 933. Number of Recent Calls
+### Откуда взял
+https://algorithmics-blog.github.io/blog/number_of_recent_calls/
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/number-of-recent-calls/description/
+https://algorithmics-blog.github.io/blog/number_of_recent_calls/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+type RecentCounter struct {
+    calls []int
+}
+
+
+func Constructor() RecentCounter {
+    return RecentCounter{
+		calls: []int{},
+	}
+}
+
+
+func (this *RecentCounter) Ping(t int) int {
+    this.calls = append(this.calls, t)
+
+	for this.calls[0] < t-3000 {
+		this.calls = this.calls[1:]
+	}
+
+	return len(this.calls)
+}
+
+
+/**
+ * Your RecentCounter object will be instantiated and called as such:
+ * obj := Constructor();
+ * param_1 := obj.Ping(t);
+ */
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+
+
+=================================================================
+# 1372. Longest ZigZag Path in a Binary Tree
+### Откуда взял
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/description/
+https://algorithmics-blog.github.io/blog/longest_zigzag_path_in_a_binary_tree/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func longestZigZag(root *TreeNode) int {
+    _, _, m := dfs(root)
+	return m
+}
+
+func dfs(root *TreeNode) (int, int, int) {
+    var leftPathLength, rightPathLength, leftMaxLength, rightMaxLength int
+	if root == nil {
+		return leftPathLength, rightPathLength, 0
+	}
+    if root.Left != nil{
+        var childRightZigZag int
+        _, childRightZigZag, leftMaxLength = dfs(root.Left)
+        leftPathLength = childRightZigZag + 1
+    }
+    if root.Right != nil{
+        var childLeftZigZag int
+        childLeftZigZag, _, rightMaxLength = dfs(root.Right)
+        rightPathLength = childLeftZigZag + 1
+    }
+    rlMax := max(leftMaxLength, rightMaxLength)
+    rlPathMax := max(leftPathLength, rightPathLength)
+    maxLength := max(rlMax, rlPathMax)
+
+	return leftPathLength, rightPathLength, maxLength
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
+
+
+https://leetcode.com/problems/move-zeroes/submissions/1510967764/
+
+
+
+=================================================================
+# 1657. Determine if Two Strings Are Close
+### Откуда взял
+https://leetcode.com/problems/determine-if-two-strings-are-close/description/
+### timing
+start:
+
+end:
+
+### sources, urls
+https://leetcode.com/problems/determine-if-two-strings-are-close/
+### Constraints
+```
+x
+```
+
+### Main idea
+
+### test cases (normal and edge cases)
+```
+x
+```
+
+### code in pseudo language
+
+```
+x
+```
+
+### complexity
+
+space - O( )
+runtime - O()
+modification input data = yes|no
+
+### code
+
+```python
+x
+```
+
+
+```go
+func closeStrings(word1 string, word2 string) bool {
+    // operation 1: swap two existing characters abcde -> aecdb
+    // operation 2: tranf every occurrrence of 1 existing
+    //              character and do the same with the other char
+    // aacabb (a->b) bbcbaa
+    //        (b->a)
+
+    // Example 1 abc, bca:
+    //   op1   b<->c  acb
+    //   op1   a<->b  bca
+
+    // Example 2 a aa - false
+
+    // Example 3 cabbba, abbccc
+    // op1 b<->a       caabbb
+    // op2 (c>b,b>c)   baaccc
+    // op2 (b>a,a>b)   abbccc
+
+    if len(word1) != len(word2) {
+		return false
+	}
+	counter1 := make(map[rune]int)
+	counter2 := make(map[rune]int)
+
+	for _, char := range word1 {
+		counter1[char]++
+	}
+
+	for _, char := range word2 {
+		counter2[char]++
+	}
+	tempCounter := make(map[int]int)
+
+	for k, v := range counter1 {
+		v2, exist := counter2[k]
+		if !exist {
+			return false
+		}
+
+		tempCounter[v]++
+		tempCounter[v2]--
+	}
+
+    for _, count := range tempCounter {
+		if count != 0 {
+			return false
+		}
+	}
+
+	return true
+}
+```
+
+### links
+### Затраченное время
+### Оставшиеся вопросы
