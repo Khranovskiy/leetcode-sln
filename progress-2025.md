@@ -2312,3 +2312,445 @@ func removeStars(s string) string {
 ### links
 ### Затраченное время
 ### Оставшиеся вопросы
+
+
+https://leetcode.com/problems/is-subsequence/submissions/1512959610/
+https://algorithmics-blog.github.io/blog/is_subsequence/
+
+https://leetcode.com/problems/string-compression/submissions/1512992916/
+https://algorithmics-blog.github.io/blog/string_compression/
+
+
+https://leetcode.com/problems/max-number-of-k-sum-pairs/
+https://algorithmics-blog.github.io/blog/max_number_of_k_sum_pair/
+
+https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/description/
+https://algorithmics-blog.github.io/blog/maximum_number_of_vowels_in_a_substring_of_given_length/
+
+https://leetcode.com/problems/maximum-average-subarray-i/
+https://algorithmics-blog.github.io/blog/maximum_average_subarray_i/
+
+https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/
+https://algorithmics-blog.github.io/blog/minimum_number_of_arrows_to_burst_balloons/
+
+
+https://leetcode.com/problems/maximum-frequency-stack/submissions/1518438653/
+https://algorithmics-blog.github.io/blog/maximum_frequency_stack/
+
+https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/submissions/1519408905/
+https://algorithmics-blog.github.io/blog/minimum_flips_to_make_a_or_b_equal_c/
+
+https://leetcode.com/problems/equal-row-and-column-pairs/submissions/1519418113/
+https://algorithmics-blog.github.io/blog/equal_row_and_column_pairs/
+
+
+https://leetcode.com/problems/maximum-depth-of-binary-tree/submissions/1519425002/
+https://algorithmics-blog.github.io/blog/maximum_depth_of_binary_tree/
+
+https://leetcode.com/problems/leaf-similar-trees/description/
+https://algorithmics-blog.github.io/blog/leaf_similar_trees/
+
+skip hard (Acceptance Rate 35.4%)
+https://algorithmics-blog.github.io/blog/longest_valid_parentheses/
+
+
+8. String to Integer (atoi) medium (Acceptance Rate 18.5%)
+https://leetcode.com/problems/string-to-integer-atoi/description/
+https://algorithmics-blog.github.io/blog/atoi/
+
+интересная easy
+https://leetcode.com/problems/number-of-1-bits/description/
+https://algorithmics-blog.github.io/blog/number_of_1_bits/
+
+https://leetcode.com/problems/counting-bits/description/
+https://algorithmics-blog.github.io/blog/counting_bits/
+
+(Acceptance Rate 28.7%)
+https://leetcode.com/problems/design-linked-list/description/
+https://algorithmics-blog.github.io/blog/design_linked_list/
+
+skip
+https://algorithmics-blog.github.io/blog/design_linked_list/
+
+классная
+https://algorithmics-blog.github.io/blog/maximum_twin_sum_of_a_linked_list/
+https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/submissions/1519917254/
+
+```go
+func pairSum(head *ListNode) int {
+    return pairSumStack(head)
+}
+
+func pairSumSlice(h *ListNode) int {
+    l := []int{h.Val}
+    for curr := h.Next; curr != nil; curr = curr.Next {
+        l = append(l, curr.Val)
+    }
+    res := 0
+    for ii := 0; ii < len(l) / 2; ii++ {
+        jj := len(l) - ii - 1
+        res = max(res, l[ii]+l[jj])
+    }
+    return res
+}
+func pairSumStack(h *ListNode) int {
+    var reversedHead *ListNode
+
+    curListElement, oddListElement := h, h
+    for oddListElement != nil && oddListElement.Next != nil {
+        oddListElement = oddListElement.Next.Next
+
+        nextDirect := curListElement.Next
+
+        curListElement.Next = reversedHead
+        reversedHead = curListElement
+
+        curListElement = nextDirect
+    }
+    res := 0
+    for ; curListElement != nil; curListElement = curListElement.Next {
+        res = max(res, curListElement.Val +
+                  reversedHead.Val )
+        reversedHead = reversedHead.Next
+    }
+    return res
+}
+```
+
+пропущу
+https://algorithmics-blog.github.io/blog/search_suggestions_system/
+
+
+https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
+https://algorithmics-blog.github.io/blog/kids_with_the_greatest_number_of_candies/
+
+meduim, (Array, Hash Table, String, Sorting)
+Вместо string ключа отсортированной строки используется [26]int{}
+https://leetcode.com/problems/group-anagrams/description/
+
+https://leetcode.com/problems/top-k-frequent-elements/description/
+
+
+(locked)
+https://leetcode.com/problems/encode-and-decode-strings/
+https://neetcode.io/problems/string-encode-and-decode
+
+
+128. Longest Consecutive Sequence
+https://leetcode.com/problems/longest-consecutive-sequence/
+https://neetcode.io/problems/longest-consecutive-sequence
+
+242. Valid Anagram
+https://leetcode.com/problems/valid-anagram/description/
+https://leetcode.com/problems/valid-anagram/solutions/2347062/golang-optimized-with-followup-o-n/
+
+
+**todo** open topic  4 - Prefix Sums https://neetcode.io/courses/advanced-algorithms/4
+- e Range Sum Query - Immutable https://leetcode.com/problems/range-sum-query-immutable/
+- m Range Sum Query 2D Immutable https://leetcode.com/problems/range-sum-query-2d-immutable/
+- e Find Pivot Index https://leetcode.com/problems/find-pivot-index/
+- m Product of Array Except Self  https://leetcode.com/problems/product-of-array-except-self/
+- m Subarray Sum Equals K https://leetcode.com/problems/subarray-sum-equals-k/
+
+m 560. Subarray Sum Equals K (running prefix Sum, hash table) (44.7%)
+Интересная
+https://leetcode.com/problems/subarray-sum-equals-k/description/
+https://neetcode.io/courses/advanced-algorithms/4
+
+взрыв бошка (Matrix, Prefix Sum) medium
+https://leetcode.com/problems/range-sum-query-2d-immutable/
+https://neetcode.io/courses/advanced-algorithms/4
+
+
+724. Find Pivot Index (easy)
+но выглядет сложнее (2 ошибочных submission)
+https://leetcode.com/problems/find-pivot-index/description/
+
+unicode.IsLetter(ch)
+unicode.IsDigit(ch)
+unicode.ToLower(a)
+https://leetcode.com/problems/valid-palindrome/description/
+
+167. Two Sum II - Input Array Is Sorted (med)
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+
+https://leetcode.com/problems/3sum/description/
+
+Интересная
+https://leetcode.com/problems/trapping-rain-water/
+https://neetcode.io/problems/trapping-rain-water
+
+
+https://leetcode.com/problems/valid-parentheses/
+
+medium
+https://leetcode.com/problems/min-stack/
+
+medium
+https://leetcode.com/problems/evaluate-reverse-polish-notation/
+
+stack, Dynamic Programming, Backtracking (medium)
+понравилась
+https://leetcode.com/problems/generate-parentheses/description/
+
+sort, решил через стек (medium)
+https://leetcode.com/problems/car-fleet/
+
+Binary search
+https://leetcode.com/problems/binary-search/
+
+good article
+https://leetcode.com/discuss/study-guide/2371234/An-opinionated-guide-to-binary-search-(comprehensive-resource-with-a-bulletproof-template)/1532153#template
+
+good article
+https://www.code-recipe.com/post/binary-search
+
+good article
+https://leetcode.com/problems/binary-search/solutions/2794222/binary-search/
+
+binary search
+https://leetcode.com/problems/search-a-2d-matrix/description/
+
+useful tips how convert 1D index to r,c (matrix placed row-wise) or column-wise
+https://leetcode.com/problems/search-a-2d-matrix/description/comments/2050872
+
+binary search tip
+I think when we write e=mid-1 then we can write s<=e BUT when we write e=mid then we need to write s<e
+https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/comments/1966772
+
+
+153. Find Minimum in Rotated Sorted Array (middle)
+https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+
+Blind 75
+https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
+
+https://leetcode.com/problems/search-in-rotated-sorted-array
+
+100th !
+https://leetcode.com/problems/time-based-key-value-store/
+
+интересная, Sliding window
+https://leetcode.com/problems/longest-repeating-character-replacement
+
+
+https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+
+https://leetcode.com/problems/reorder-list/description/
+```go
+func reorderList(head *ListNode)  {
+	c := head
+	cFast := c
+	middle := c
+	for cFast != nil && cFast.Next != nil {
+		c = c.Next
+		middle = c
+		cFast = cFast.Next.Next
+	}
+
+	secondHalf := reverseList(middle.Next)
+	middle.Next = nil
+
+	// merge
+	first, second := head, secondHalf
+	for second != nil {
+		tmp1, tmp2 := first.Next, second.Next
+		first.Next = second
+		second.Next = tmp1
+		first, second = tmp1, tmp2
+	}
+}
+
+func printList(head *ListNode) {
+	for head != nil {
+		fmt.Print(head.Val, " -> ")
+		head = head.Next
+	}
+	fmt.Println("nil")
+}
+```
+
+интересная
+https://leetcode.com/problems/remove-nth-node-from-end-of-list
+```go
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+	var (
+		p1, p2 = head, head
+		prev   *ListNode
+	)
+	for i := 0; i < n; i++ {
+		p1 = p1.Next
+	}
+	for p1 != nil {
+		p1 = p1.Next
+		prev = p2
+		p2 = p2.Next
+	}
+	if prev == nil {
+		return head.Next
+	}
+	prev.Next = p2.Next
+	return head
+}
+```
+
+Blind 75 Animated Playlist
+https://www.youtube.com/playlist?list=PLHm8nzcbp3_19DiTlDg8QYvR-hN5jzPCp
+
+Every Leetcode Pattern You Need To Know
+https://www.blog.codeinmotion.io/p/leetcode-patterns
+
+
+hashmap метод, можно оптимальнее, просто пройтись один раз и занести в мапу
+второй раз уже проставить указатели на новые
+Есть решение с перемешиванем старых и новых копией узлов
+https://leetcode.com/problems/copy-list-with-random-pointer
+```go
+func copyRandomList(head *Node) *Node {
+	m := make(map[*Node]*Node)
+	var get func(orig *Node) *Node = nil
+
+	get = func(orig *Node) *Node {
+		if orig == nil {
+			return nil
+		}
+		if clone, ok := m[orig]; ok {
+			return clone
+		}
+		clone := &Node{}
+		m[orig] = clone
+		clone.Val = orig.Val
+		clone.Next = get(orig.Next)
+		clone.Random = get(orig.Random)
+
+		fmt.Println(m[orig])
+		return clone
+	}
+	newHead := get(head)
+	return newHead
+}
+```
+
+```go
+func copyRandomList(head *Node) *Node {
+	if head == nil {
+		return nil
+	}
+
+	curr := head
+	for curr != nil {
+		newNode := &Node{
+			Val:  curr.Val,
+			Next: curr.Next,
+		}
+		curr.Next = newNode
+		curr = newNode.Next
+	}
+
+	curr = head
+	for curr != nil {
+		if curr.Random != nil {
+			newCurr := curr.Next
+			newCurr.Random = curr.Random.Next
+		}
+		// jump to the next original
+		curr = curr.Next.Next
+	}
+
+	curr = head
+	newHead := head.Next
+	copyCurr := newHead
+	for curr != nil {
+		// set to the next original
+		curr.Next = curr.Next.Next
+		if copyCurr.Next != nil {
+			copyCurr.Next = copyCurr.Next.Next
+		}
+		curr = curr.Next
+		copyCurr = copyCurr.Next
+	}
+
+	return newHead
+}
+```
+
+https://leetcode.com/problems/add-two-numbers
+
+
+287. Find the Duplicate Number
+Array, Two Pointers (medium)
+Floyd's Tortoise and Hare Algorithm: Finding a Cycle in a Linked List
+
+https://dev.to/alisabaj/floyd-s-tortoise-and-hare-algorithm-finding-a-cycle-in-a-linked-list-39af
+https://leetcode.com/problems/find-the-duplicate-number/
+```go
+func findDuplicate(nums []int) int {
+    slow, fast := nums[0], nums[0]
+
+    // Phase 1: Finding the intersection point
+    for {
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+        if slow == fast {
+            break
+        }
+    }
+
+    // Phase 2: Finding the entrance to the cycle
+    slow = nums[0]
+    for slow != fast {
+        slow = nums[slow]
+        fast = nums[fast]
+    }
+
+    return slow
+}
+```
+
+container/list used for doubly linked list
+https://leetcode.com/problems/lru-cache
+
+Min Heap with container/heap package
+https://leetcode.com/problems/merge-k-sorted-lists
+
+
+Привет!
+Моя любимая эта:
+https://leetcode.com/problems/summary-ranges/
+только я даю что массив не отсортирован и если чувак решил быстро, то спрашиваю а как решать, если массив не отсортирован и результат тоже не должен быть отсортирован, т.е. для 0,1,2,4,5,7 можно засчитать [4 -> 5, 7, 0 -> 2].
+Задача проверяет умеет ли человек думать инвариантами или он постоянно рассматривает какие-то "тесты" в голове и на их основе дописывает. Мне нужны те, что на инвариантах умеют думать.
+Дальше спрашиваю любую из:
+https://leetcode.com/problems/one-edit-distance/
+https://leetcode.com/problems/group-anagrams/
+https://leetcode.com/problems/line-reflection/
+
+disjoint_set
+https://leetcode.com/problems/number-of-provinces
+https://algorithmics-blog.github.io/blog/number_of_provinces/
+https://algorithmics-blog.github.io/blog/disjoint_set/
+
+
+Trees, easy
+https://leetcode.com/problems/invert-binary-tree
+
+Trees, easy
+https://leetcode.com/problems/diameter-of-binary-tree/
+https://leetcode.com/problems/diameter-of-binary-tree/solutions/3241250/simplest-golang-solution-using-tree-height
+
+Trees, easy тяжело зашла
+https://leetcode.com/problems/balanced-binary-tree
+
+Trees, easy
+https://leetcode.com/problems/same-tree
+
+Trees, easy
+https://leetcode.com/problems/subtree-of-another-tree/
+
+
+Trees, medium (короткое решение)
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree
+
+trees medium (but easy),
+второе решение интереснее
+https://leetcode.com/problems/binary-tree-level-order-traversal
