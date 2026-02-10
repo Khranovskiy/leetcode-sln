@@ -39,6 +39,70 @@ func balanceBST(root *TreeNode) *TreeNode {
 }
 ```
 
+=================================================================
+
+- m 3719. Longest Balanced Subarray I ❌
+[url](https://leetcode.com/problems/longest-balanced-subarray-i/description/?envType=daily-question&envId=2026-02-10)
+
+20 min ❌
+next 35 min - wrong answer ❌ 
+
+1 <= nums.length <= 1500
+1 <= nums[i] <= 10^5
+
+```go
+func longestBalanced(nums []int) int {
+	maxLen := 0
+
+	for i := 0; i < len(nums); i++ {
+		odd := make(map[int]int)
+		even := make(map[int]int)
+
+		for j := i; j < len(nums); j++ {
+			if nums[j]&1 == 1 {
+				odd[nums[j]]++
+			} else {
+				even[nums[j]]++
+			}
+			if len(odd) == len(even) {
+				if j-i+1 > maxLen {
+					maxLen = j - i + 1
+				}
+			}
+		}
+	}
+	return maxLen
+}
+```
+
+=================================================================
+
+- m 3721. Longest Balanced Subarray 2 ❌
+[url](https://leetcode.com/problems/longest-balanced-subarray-ii/description/)
+
+??? min ❌✅
+
+1 <= nums.length <= 10^5
+1 <= nums[i] <= 10^5
+
+```go
+func longestBalanced(nums []int) int {
+}
+```
+
+
+=================================================================
+
+# template 
+
+=================================================================
+- m 
+[url]( )
+
+??? min ❌ ✅
+
+```go
+```
 
 =================================================================
 
