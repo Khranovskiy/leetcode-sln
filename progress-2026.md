@@ -85,6 +85,8 @@ func longestBalanced(nums []int) int {
 1 <= nums.length <= 10^5
 1 <= nums[i] <= 10^5
 
+https://claude.ai/share/ee1f0a77-9bdf-4984-84a7-6287ad845605
+
 ```go
 // LeetCode 3721. Longest Balanced Subarray II
 // O(n log n) time, O(n) space
@@ -206,6 +208,63 @@ func longestBalanced(nums []int) int {
 
     return ans
 }
+```
+=================================================================
+- m 3713. Longest Balanced Substring I
+[url](https://leetcode.com/problems/longest-balanced-substring-i/description/?envType=daily-question&envId=2026-02-12)
+
+bruteforce solution due to small input data
+
+Constraints:
+- 1 <= s.length <= 1000
+- s consists of lowercase English letters.
+
+inf min ❌
+
+- frequency array of size 26
+- distinct → how many unique characters
+- maxFreq → maximum frequency in current substring
+
+Runtime 19 ms Beats 100.00%
+Memory 4.58 MB Beats 100.00%
+
+
+```go
+func longestBalanced(s string) int {
+	ans := 0
+	for i, _ := range s {
+
+		var (
+			freq     = make([]int, 26)
+			maxFreq  = 0
+			distinct = 0
+		)
+
+		for j := i; j < len(s); j++ {
+			index := int(s[j]) - 'a'
+
+			if freq[index] == 0 {
+				distinct++
+			}
+
+			freq[index]++
+			if freq[index] > maxFreq {
+				maxFreq = freq[index]
+			}
+
+			length := j - i + 1
+
+			if length == maxFreq*distinct {
+				if length > ans {
+					ans = length
+				}
+			}
+		}
+	}
+	return ans
+}
+
+
 ```
 
 
