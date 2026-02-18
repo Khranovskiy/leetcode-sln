@@ -396,6 +396,15 @@ func countBits(n int) int {
 ```
 
 
+693. Binary Number with Alternating Bits
+easy
+
+https://leetcode.com/problems/binary-number-with-alternating-bits/?envType=daily-question&envId=2026-02-18
+
+func hasAlternatingBits(n int) bool {
+    x := n ^ (n >> 1)
+    return x & (x + 1) == 0
+}
 =================================================================
 
 # template 
