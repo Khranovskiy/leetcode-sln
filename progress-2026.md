@@ -517,6 +517,28 @@ func hasAllCodes(s string, k int) bool {
 }
 ```
 
+e 1022. Sum of Root To Leaf Binary Numbers
+https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/?envType=daily-question&envId=2026-02-24
+
+1022-sum-of-root-to-leaf-binary-numbers.go
+
+```go
+func sumRootToLeaf(root *TreeNode) int {
+    var dfs func(node *TreeNode, cur int) int
+    dfs = func(node *TreeNode, cur int) int {
+        if node == nil {
+            return 0
+        }
+        cur = cur*2 + node.Val
+        if node.Left == nil && node.Right == nil {
+            return cur
+        }
+        return dfs(node.Left, cur) + dfs(node.Right, cur)
+    }
+    return dfs(root, 0)
+}
+```
+
 =================================================================
 
 # template 
